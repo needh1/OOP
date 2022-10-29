@@ -1,18 +1,19 @@
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.FileWriter;
+import java.util.ArrayList;
 import java.io.IOException;
 
 public class FileStorage
 {
-  public String[] readFile(String file_name){
-    String[] entries = new String[999];
+  public ArrayList<String> readFile(String file_name){
+    ArrayList<String> entries = new ArrayList<>();
     try {
       BufferedReader reader = new BufferedReader(new FileReader(file_name));
       int index = 0;
       String line = reader.readLine();
       while(line != null){
-        entries[index++] = line;
+        entries.add(line);
         line = reader.readLine();
       }
       reader.close();
