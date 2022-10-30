@@ -33,7 +33,7 @@ public class UserUI
     public void visitorUI(){
         boolean quit = false;
         while(!quit){
-            System.out.println("_______Admin_______");
+            System.out.println("_______Movie-goer_______");
             System.out.println("1. Search/List movies\n"+
                                 "2. View movie details\n"+
                                 "3. Check seat availability and selection of seat/s\n"
