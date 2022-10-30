@@ -4,9 +4,6 @@ import java.util.Scanner;
 public class UserUI
 {
     Scanner sc = new Scanner(System.in);
-    public void main(String[] args){
-
-    }
 
     public void adminUI(){
         boolean quit = false;
