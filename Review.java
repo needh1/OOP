@@ -1,16 +1,16 @@
 public class Review 
 {
-	private int movieID;
+	private String movieID;
 	private int reviewRating;
 	private String reviewContent; 
 	
-	public Review(int id, int rating, String review) {
+	public Review(String id, int rating, String review) {
 		this.movieID = id;
 		this.reviewRating = rating;
 		this.reviewContent = review;
 	}
 
-	public int getMovieID() {
+	public String getMovieID() {
 		return movieID;
 	}
 
@@ -22,7 +22,7 @@ public class Review
 		return reviewContent;
 	}
 
-	public void setMovieID(int id) {
+	public void setMovieID(String id) {
 		movieID = id;
 	}
 	
