@@ -1,11 +1,11 @@
-public class Seat
+public class Seat implements Serializable
 {
     private String seatID;
     private boolean assigned;
 
     public Seat(String id){
         seatID = id;
-        asigned = false;
+        assigned = false;
     }
 
     public Seat(String id, boolean assigned){
