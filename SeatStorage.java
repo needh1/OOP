@@ -1,6 +1,6 @@
 import java.util.*;
 import java.io.*;
-
+//JUST A TEST FOR THE STORAGE SYSTEM - NOT ACTUALLY USED
 public class SeatStorage extends FileStorage {
     public final static String FILENAME = "seat.txt";
 
