@@ -1,22 +1,25 @@
 import java.util.*;
 import java.io.*;
 
-public class SeatStorage {
+public class SeatStorage extends FileStorage {
     public final static String FILENAME = "seat.txt";
 
-    public void writeObject(Seat seat) {
-        ArrayList<Seat> allData = new ArrayList<Seat>();
-        File tempFile = new File(FILENAME);
-        if (tempFile.exists()) 
-            allData = read();
-        try {
-            ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(FILENAME));
-            allData.add(seat);
-            out.writeObject(allData);
-            out.flush();
-            out.close();
-        } catch (IOException e) {
-            // ignore error
+    public void writeObject(Object o) {
+        if(o instanceof Seat){
+            Seat seat = (Seat) o;
+            ArrayList<Seat> allData = new ArrayList<Seat>();
+            File file = new File(FILENAME);
+            if (file.exists()) 
+                allData = read();
+            try {
+                ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(FILENAME));
+                allData.add(seat);
+                out.writeObject(allData);
+                out.flush();
+                out.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
     }
 
@@ -34,5 +37,5 @@ public class SeatStorage {
             e.printStackTrace();
         }
         return new ArrayList<Seat>();
-    }; 
+    }
 }
