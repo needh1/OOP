@@ -12,9 +12,8 @@ public class Movie implements Serializable
 	private String director;
 	private String cast;
 	private int ticketSales;
-	private ArrayList<Integer> reviewRating;
-	private ArrayList<String> reviewContent;
-
+	private ArrayList<Review> reviewList;
+	
 	public Movie() {
 		this.movieID = "";
 		this.movieTitle = "";
@@ -25,6 +24,8 @@ public class Movie implements Serializable
 		this.director = "";
 		this.cast = "";
 		this.ticketSales = 0;
+		this.reviewList = new ArrayList<>();
+
 	}
 
 	public Movie(String id, String title, String type, String duration, String status, String synopsis, 
@@ -38,6 +39,7 @@ public class Movie implements Serializable
 		this.director = director;
 		this.cast = cast;
 		this.ticketSales = sales;
+		this.reviewList = new ArrayList<>();
 	}
 
 	public String getMovieID() {
@@ -74,6 +76,10 @@ public class Movie implements Serializable
 
 	public int getTicketSales() {
 		return ticketSales;
+	}
+	
+	public ArrayList<Review> getReviewList() {
+		return reviewList;
 	}
 	
 	public void setMovieID(String id) {
@@ -117,19 +123,19 @@ public class Movie implements Serializable
 	}
 
 	public void addReview(int rating, String content) {
-		reviewRating.add(rating);
-		reviewContent.add(content);
+		Review newReview = new Review(rating, content);
+		reviewList.add(newReview);
 	}
 	
 	public int numReview() {
-		return reviewRating.size();
+		return reviewList.size();
 	}
 	
 	public int avgRating() {
 		int total = 0;
-		for(int r : reviewRating)
-		    total += r;
+		for(Review r : reviewList)
+		    total += r.getReviewRating();
 		return total / numReview();
 	}
-
+	
 }
