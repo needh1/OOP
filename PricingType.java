@@ -6,13 +6,13 @@ public enum PricingType
     HOLIDAY("Holiday"), 
     WEEKEND("Weekend");
 
-    private final String text;
+    private final String type;
 
-    private PricingType(String text) {
-        this.text = text;
+    private PricingType(String type) {
+        this.type = type;
     }
 
     public String toString(){
-        return text;
+        return type;
     }
 }
