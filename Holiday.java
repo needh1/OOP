@@ -19,6 +19,7 @@ public class Holiday implements Serializable
     }
 
     public String toString(){
-        return holidayDate.format(DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+        String date = holidayDate.format(DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+        return date;
     }
 }
