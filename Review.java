@@ -1,17 +1,11 @@
 public class Review 
 {
-	private String movieID;
 	private int reviewRating;
 	private String reviewContent; 
 	
-	public Review(String id, int rating, String review) {
-		this.movieID = id;
+	public Review(int rating, String content) {
 		this.reviewRating = rating;
-		this.reviewContent = review;
-	}
-
-	public String getMovieID() {
-		return movieID;
+		this.reviewContent = content;
 	}
 
 	public int getReviewRating() {
@@ -21,17 +15,13 @@ public class Review
 	public String getReviewContent() {
 		return reviewContent;
 	}
-
-	public void setMovieID(String id) {
-		movieID = id;
-	}
 	
 	public void setReviewRating(int rating) {
 		reviewRating = rating;
 	}
 
-	public void setReviewText(String review) {
-		reviewContent = review;
+	public void setReviewText(String content) {
+		reviewContent = content;
 	}
 
 }
