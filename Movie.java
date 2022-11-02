@@ -12,10 +12,8 @@ public class Movie implements Serializable
 	private String director;
 	private String cast;
 	private int ticketSales;
-	private int totalRating;
-	private int numRatings;
-	private float avgRating;
-	private ArrayList<Review> reviews;
+	private ArrayList<Integer> reviewRating;
+	private ArrayList<String> reviewContent;
 
 	public Movie() {
 		this.movieID = "";
@@ -27,15 +25,10 @@ public class Movie implements Serializable
 		this.director = "";
 		this.cast = "";
 		this.ticketSales = 0;
-		this.totalRating = 0;
-		this.numRatings = 0;
-		this.avgRating = 0;
-		this.reviews = null;
 	}
 
 	public Movie(String id, String title, String type, String duration, String status, String synopsis, 
-			String director, String cast, int sales, int totalRating, int numRatings, int avgRating,
-			ArrayList<Review> reviews) {
+			String director, String cast, int sales) {
 		this.movieID = id;
 		this.movieTitle = title;
 		this.type = type;
@@ -45,13 +38,9 @@ public class Movie implements Serializable
 		this.director = director;
 		this.cast = cast;
 		this.ticketSales = sales;
-		this.totalRating = totalRating;
-		this.numRatings = numRatings;
-		this.avgRating = avgRating;
-		this.reviews = reviews;
 	}
 
-	public String getMovieId() {
+	public String getMovieID() {
 		return movieID;
 	}
 
@@ -85,22 +74,6 @@ public class Movie implements Serializable
 
 	public int getTicketSales() {
 		return ticketSales;
-	}
-
-	public int getTotalRating() {
-		return totalRating;
-	}
-	
-	public int getNumRatings() {
-		return numRatings;
-	}
-	
-	public float getAvgRating() {
-		return avgRating;
-	}
-	
-	public ArrayList<Review> getReviews() {
-		return reviews;
 	}
 	
 	public void setMovieID(String id) {
@@ -139,32 +112,24 @@ public class Movie implements Serializable
 		this.ticketSales = sales;
 	}
 
-	public void addTicketSales(int tickets) {
-		this.ticketSales += tickets;
+	public void incTicketSales() {
+		this.ticketSales++;
 	}
 
-	public void setTotalRating(int total) {
-		this.totalRating = total;
+	public void addReview(int rating, String content) {
+		reviewRating.add(rating);
+		reviewContent.add(content);
+	}
+	
+	public int numReview() {
+		return reviewRating.size();
+	}
+	
+	public int avgRating() {
+		int total = 0;
+		for(int r : reviewRating)
+		    total += r;
+		return total / numReview();
 	}
 
-	public void addTotalRating(int rating) {
-		this.totalRating += rating;
-	}
-	
-	public void setNumRatings(int num) {
-		this.numRatings = num;
-	}
-
-	public void incNumRatings() {
-		this.numRatings++;
-	}
-	
-	public void setAvgRating(int rating, int num) {
-		this.avgRating = rating / num;
-	}
-	
-	//WIP
-	public void addReview() {
-		
-	}
 }
