@@ -1,5 +1,3 @@
-import java.time.*;
-import java.time.format.DateTimeFormatter;
 import java.io.*;
 
 public class Holiday implements Serializable
@@ -16,10 +14,5 @@ public class Holiday implements Serializable
 
     public void setHolidayDate(LocalDate date){
         holidayDate = date;
-    }
-
-    public String toString(){
-        String date = holidayDate.format(DateTimeFormatter.ofPattern("dd/MM/yyyy"));
-        return date;
     }
 }
