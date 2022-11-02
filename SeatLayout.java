@@ -1,25 +1,10 @@
-public class SeatLayout
+public class SeatLayout extends Cinema
 {
-    private int row;
-    private int column;
     private int emptySeats;
     private Seat[][] seats;
 
-    public SeatLayout(){
-        row = 10;
-        column = 10;
-        emptySeats = 10 * 10;
-        seats = new Seat[10][10];
-        for(int i = 0; i < row; i++){
-            for(int j = 0; j < column; j++){
-                seats[i][j] =  new Seat((i*10)+j);
-            }
-        }
-    }
-
-    public SeatLayout(int row, int column){
-        this.row = row;
-        this.column = column;
+    public SeatLayout(String code, CinemaType cinemaType, int row, int column){
+        super(code, cinemaType, row, column);
         emptySeats = row * column;
         seats = new Seat[row][column];
         for(int i = 0; i < row; i++){
@@ -27,14 +12,6 @@ public class SeatLayout
                 seats[i][j] =  new Seat((i*10)+j);
             }
         }
-    }
-
-    public int getRow(){
-        return row;
-    }
-
-    public int getColumn(){
-        return column;
     }
 
     public int totalSeats(){
@@ -50,7 +27,7 @@ public class SeatLayout
             seats[seatNum/10][seatNum%10].assign();
             emptySeats--;
         }
-        else{System.out.println("Seat is already unoccupied");}
+        else{System.out.println("Seat is already occupied");}
     }
 
     public void unassignSeat(int seatNum){
@@ -64,9 +41,9 @@ public class SeatLayout
 
     public void printLayout(){
         System.out.println("Seat Layout ([X] - Occupied, [O] - Available):");
-        for(int i = 0; i < row; i++){
+        for(int i = 0; i < getRow(); i++){
             System.out.print("|");
-            for(int j = 0; j < column; j++){
+            for(int j = 0; j < getColumn(); j++){
                 if(seats[i][j].occupied()){System.out.print(seats[i][j].getSeatID() + "[X]|");}
                 else{System.out.print(seats[i][j].getSeatID() + "[O]|");}
             }
