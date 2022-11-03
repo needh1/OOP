@@ -1,6 +1,6 @@
 import java.io.*;
 
-public class Booking 
+public class Booking implements Serializable
 {
     private String name;
     private String email;
