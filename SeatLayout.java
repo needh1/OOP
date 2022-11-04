@@ -9,7 +9,9 @@ public class SeatLayout extends Cinema
         seats = new Seat[row][column];
         for(int i = 0; i < row; i++){
             for(int j = 0; j < column; j++){
-                seats[i][j] =  new Seat((i*10)+j);
+                String id = Integer.toString(i*10+j);
+                Seat s = new Seat(id);
+                seats[i][j] = s;
             }
         }
     }
@@ -24,7 +26,7 @@ public class SeatLayout extends Cinema
 
     public void assignSeat(int seatNum){
         if(!seats[seatNum/10][seatNum%10].occupied()){
-            seats[seatNum/10][seatNum%10].assign();
+            seats[seatNum/10][seatNum%10].assignSeat();
             emptySeats--;
         }
         else{System.out.println("Seat is already occupied");}
@@ -32,7 +34,7 @@ public class SeatLayout extends Cinema
 
     public void unassignSeat(int seatNum){
         if(seats[seatNum/10][seatNum%10].occupied()){
-            seats[seatNum/10][seatNum%10].unassign();
+            seats[seatNum/10][seatNum%10].unassignSeat();
             emptySeats++;
         }
         else{System.out.println("Seat is already unoccupied.");}

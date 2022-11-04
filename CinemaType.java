@@ -1,4 +1,3 @@
-import java.io.*;
 
 public enum CinemaType {
     STANDARD("Standard"),
