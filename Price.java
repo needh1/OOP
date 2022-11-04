@@ -3,13 +3,13 @@ import java.util.Hashtable;
 
 public class Price implements Serializable
 {
-    private Hashtable<String, Integer> prices;
+    private Hashtable<PricingType, Integer> prices;
 
     public Price(){
-        prices = new Hashtable<String, Integer>();
+        prices = new Hashtable<PricingType, Integer>();
     }
 
-    public void addPrice(String type, int price){
+    public void addPrice(PricingType type, int price){
         if(prices.containsKey(type)){
             System.out.println("Price type already added.");
             return;
@@ -17,7 +17,7 @@ public class Price implements Serializable
         prices.put(type, price);
     }
 
-    public void removePrice(String type){
+    public void removePrice(PricingType type){
         if(prices.containsKey(type)){
             prices.remove(type);
             return;
@@ -25,7 +25,7 @@ public class Price implements Serializable
         System.out.println("Price type does not exist.");
     }
 
-    public void changePrice(String type, int price){
+    public void changePrice(PricingType type, int price){
         if(prices.containsKey(type)){
             prices.replace(type, price);
             return;
