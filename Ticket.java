@@ -97,4 +97,10 @@ public class Ticket implements Serializable
     public void setCineplexName(String name){
         cineplexName = name;
     }
+
+    public double getPrice(PricingType type){
+        PriceStorage storage = new PriceStorage();
+        Price price = storage.read();
+        return price.getPrice(type);
+    }
 }
