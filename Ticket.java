@@ -61,4 +61,40 @@ public class Ticket implements Serializable
     public String getCineplexName(){
         return cineplexName;
     }
+
+    public void setTicketID(String id){
+        ticketID = id;
+    }
+
+    public void setMovieName(String name){
+        movieName = name;
+    }
+
+    public void setMovieType(MovieType type){
+        movieType = type;
+    }
+
+    public void setCinemaType(CinemaType type){
+        cinemaType = type;
+    }
+
+    public void setPrice(double price){
+        this.price = price;
+    }
+
+    public void setSeatNo(int num){
+        seatNo = num;
+    }
+
+    public void setDate(LocalDate date){
+        showDate = date;
+    }
+
+    public void setTime(LocalTime time){
+        showTime = time;
+    }
+
+    public void setCineplexName(String name){
+        cineplexName = name;
+    }
 }
