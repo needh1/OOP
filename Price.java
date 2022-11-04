@@ -32,4 +32,8 @@ public class Price implements Serializable
         }
         System.out.println("Price type does not exist.");
     }
+
+    public double getPrice(PricingType type){
+        return prices.get(type);
+    }
 }
