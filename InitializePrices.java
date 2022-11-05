@@ -1,8 +1,8 @@
-//USED TO INITIALIZE THE PRICES, NOT PART OF THE APP!!!
-
 public class InitializePrices
 {
-    public static void main(String[] args){
+    public InitializePrices(){}
+    
+    public final void initialize(){
         PriceStorage storage = new PriceStorage();
 
         Price prices = new Price();
