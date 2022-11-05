@@ -66,7 +66,7 @@ public class CURShowing
         String movieName = "";
         for(int i = 0; i < movieList.size(); i++){
             if(movieList.get(i).getMovieID().equals(id)){
-                movieName = movieList.get(i).getMovietitle();
+                movieName = movieList.get(i).getMovieTitle();
                 break;
             }
             if(i == movieList.size() - 1){
@@ -172,7 +172,7 @@ public class CURShowing
                     String movieName = "";
                     for(int i = 0; i < movieList.size(); i++){
                         if(movieList.get(i).getMovieID().equals(id)){
-                            movieName = movieList.get(i).getMovietitle();
+                            movieName = movieList.get(i).getMovieTitle();
                             break;
                         }
                         if(i == movieList.size() - 1){
