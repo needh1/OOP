@@ -1,13 +1,14 @@
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class AdminUI
 {
     Scanner sc = new Scanner(System.in);
 
-    
+
     public void adminUI(){
-        boolean quit = false;
-        while(!quit){
+        boolean loggedIn = verify();
+        while(loggedIn){
             System.out.println("\n_______Admin_______");
             System.out.println("1. Create/Update/Remove movie Listing\n"+
                                 "2. Create/Update/Remove movie showings\n"+
@@ -23,7 +24,7 @@ public class AdminUI
                     case 3:
                         break;
                     case 4:
-                        quit = true;
+                        loggedIn = false;
                         break;
                     default:
                         System.out.println("Invalid choice!\n");
@@ -34,5 +35,26 @@ public class AdminUI
                 sc.nextLine();
             }
         }
+    }
+
+    public boolean verify(){
+        System.out.print("Please enter username: ");
+        String username = sc.next();
+        System.out.print("Please enter password: ");
+        String password = sc.next();
+
+        AdminStorage storage = new AdminStorage();
+        ArrayList<Admin> adminList = storage.read();
+        for(Admin admin : adminList){
+            if(admin.getUsername() == username){
+                if(admin.getPassword() == password){
+                    return true;
+                }
+                System.out.println("Wrong Password!");
+                return false;
+            }
+        }
+        System.out.println("Admin account does not exist!");
+        return false;
     }
 }
