@@ -19,7 +19,7 @@ public class ShowingStorage extends FileStorage
                 out.flush();
                 out.close();
             } catch (IOException e) {
-                e.printStackTrace();
+
             }
         }
     }
@@ -32,9 +32,9 @@ public class ShowingStorage extends FileStorage
             ois.close();
             return showingList;
         } catch (ClassNotFoundException e) {
-            System.out.println("Object does not exist.");
+
         } catch (IOException e){
-            e.printStackTrace();
+
         }
         return new ArrayList<Showing>();
     }

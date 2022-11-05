@@ -34,9 +34,9 @@ public class AdminStorage extends FileStorage
             ois.close();
             return adminListing;
         } catch (ClassNotFoundException e) {
-            System.out.println("Object does not exist.");
+
         } catch (IOException e){
-            System.out.println("File does not exist.");
+
         }
         return new ArrayList<Admin>();
     }

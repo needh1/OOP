@@ -14,7 +14,7 @@ public class PriceStorage extends FileStorage
                 out.flush();
                 out.close();
             } catch (IOException e) {
-                e.printStackTrace();
+
             }
         }
     }
@@ -26,7 +26,7 @@ public class PriceStorage extends FileStorage
             ois.close();
             return prices;
         } catch (ClassNotFoundException e) {
-            System.out.println("Object does not exist.");
+
         } catch (IOException e){
 
         }

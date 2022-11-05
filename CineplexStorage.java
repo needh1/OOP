@@ -20,7 +20,7 @@ public class CineplexStorage extends FileStorage
                 out.flush();
                 out.close();
             } catch (IOException e) {
-                e.printStackTrace();
+
             }
         }
     }
@@ -33,9 +33,9 @@ public class CineplexStorage extends FileStorage
             ois.close();
             return cineplexListing;
         } catch (ClassNotFoundException e) {
-            System.out.println("Object does not exist.");
+
         } catch (IOException e){
-            System.out.println("File does not exist.");
+
         }
         return new ArrayList<Cineplex>();
     }

@@ -34,9 +34,9 @@ public class MovieStorage extends FileStorage
             ois.close();
             return movieListing;
         } catch (ClassNotFoundException e) {
-            System.out.println("Object does not exist.");
+
         } catch (IOException e){
-            System.out.println("File does not exist.");
+
         }
         return new ArrayList<Movie>();
     }
