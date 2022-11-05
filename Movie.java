@@ -46,7 +46,7 @@ public class Movie implements Serializable
 		return movieID;
 	}
 
-	public String getMovietitle() {
+	public String getMovieTitle() {
 		return movieTitle;
 	}
 
