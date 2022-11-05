@@ -19,6 +19,7 @@ public class AdminStorage extends FileStorage
                 out.writeObject(allData);
                 out.flush();
                 out.close();
+                System.out.println("Admin account created successfully!");
             } catch (IOException e) {
                 e.printStackTrace();
             }
