@@ -119,9 +119,10 @@ public class CURListing
 		System.out.printf(  "1. Title\n"+
 							"2. Type\n"+
 							"3. Duration\n"+
-							"4. Synopsis \n" +
-							"5. Director\n"+
-							"6. Cast\n\n"+
+                            "4. Status\n"+
+							"5. Synopsis \n" +
+							"6. Director\n"+
+							"7. Cast\n\n"+
 							"Enter option: ");
         
         if (sc.hasNextInt()) {
@@ -161,18 +162,34 @@ public class CURListing
                     movieList.get(getIndex(movieList, id)).setDuration(newDuration);
                     break;
                 case 4:
+                    System.out.print("Enter new status (Now Showing/End of Showing): ");
+                    sc.nextLine();
+                    String newStatus = sc.nextLine();
+                    if(newStatus.equals("End of Showing")){
+                        for(int i = 0; i < movieList.size(); i++){
+                            if(movieList.get(i).getMovieID().equals(id)){
+                                movieList.remove(i);
+                                storage.replaceExistingFile(movieList);
+                                System.out.println("Movie successfully removed!");
+                                return;
+                            }
+                        }
+                    }
+                    movieList.get(getIndex(movieList, id)).setMovietitle(newStatus);
+                    break;
+                case 5:
                     System.out.print("Enter new synopsis: ");
                     sc.nextLine();
                     String newSynopsis = sc.nextLine();
                     movieList.get(getIndex(movieList, id)).setMovietitle(newSynopsis);
                     break;
-                case 5:
+                case 6:
                     System.out.print("Enter new director: ");
                     sc.nextLine();
                     String newDirector = sc.nextLine();
                     movieList.get(getIndex(movieList, id)).setDirector(newDirector);
                     break;
-                case 6:
+                case 7:
                     System.out.print("Enter new cast: ");
                     sc.nextLine();
                     String newCast = sc.nextLine();
