@@ -6,6 +6,8 @@ public class UserUI
     Scanner sc = new Scanner(System.in);
 
     public void mainUI(){
+        initializeSystem();
+
         boolean quit = false;
         while(!quit){
             System.out.println("\n_______Welcome to MOBLIMA_______");
@@ -19,7 +21,7 @@ public class UserUI
                         adminUI();
                         break;
                     case 2:
-                        visitorUI();
+                        movieGoerUI();
                         break;
                     case 3:
                         quit = true;
@@ -34,6 +36,7 @@ public class UserUI
             }
         }
     }
+
 
     public void adminUI(){
         boolean quit = false;
@@ -66,7 +69,8 @@ public class UserUI
         }
     }
 
-    public void visitorUI(){
+
+    public void movieGoerUI(){
         boolean quit = false;
         while(!quit){
             System.out.println("\n_______Movie-goer_______");
@@ -103,6 +107,21 @@ public class UserUI
                 System.out.println("Please enter an integer!\n");
                 sc.nextLine();
             }
+        }
+    }
+
+
+    private static void initializeSystem(){
+        PriceStorage priceStore = new PriceStorage();
+        if(priceStore.read().getSize() == 0){
+            InitializePrices initPrice = new InitializePrices();
+            initPrice.initialize();            
+        }
+
+        CineplexStorage cineplexStore = new CineplexStorage();
+        if(cineplexStore.read().size() == 0){
+            InitializeCineplex initCineplex = new InitializeCineplex();
+            initCineplex.initialize();
         }
     }
 }
