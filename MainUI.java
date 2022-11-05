@@ -13,8 +13,7 @@ public class MainUI
             System.out.println("\n_______Welcome to MOBLIMA_______");
             System.out.println("1. Admin Login\n"+
                                 "2. Movie-goer Access\n"+
-                                "3. New Admin account"+
-                                "4. Quit");
+                                "3. Quit");
             System.out.print("Enter choice: ");
             if (sc.hasNextInt()) {
                 switch(sc.nextInt()){
@@ -27,8 +26,6 @@ public class MainUI
                         moviegoer.movieGoerUI();
                         break;
                     case 3:
-                        registerAdmin();
-                    case 4:
                         quit = true;
                         break;
                     default:
@@ -54,26 +51,11 @@ public class MainUI
             InitializeCineplex initCineplex = new InitializeCineplex();
             initCineplex.initialize();
         }
-    }
 
-    public void registerAdmin(){
-        System.out.println("\n_______Register admin account_______");
-        System.out.print("Please enter new username: ");
-        String username = sc.next();
-
-        AdminStorage storage = new AdminStorage();
-        ArrayList<Admin> adminList = storage.read();
-        for(Admin admin : adminList){
-            if(admin.getUsername() == username){
-                System.out.println("Username already exists.");
-                return;
-            }
+        AdminStorage adminStore = new AdminStorage();
+        if(adminStore.read().size() == 0){
+            Admin newAdmin = new Admin("default", "default");
+            adminStore.writeObject(newAdmin);
         }
-        System.out.print("Please enter password: ");
-        String password = sc.next();
-        Admin newAdmin = new Admin(username, password);
-
-        
-        storage.writeObject(newAdmin);
     }
 }
