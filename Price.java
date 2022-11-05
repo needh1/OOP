@@ -36,4 +36,8 @@ public class Price implements Serializable
     public double getPrice(PricingType type){
         return prices.get(type);
     }
+
+    public int getSize(){
+        return prices.size();
+    }
 }
