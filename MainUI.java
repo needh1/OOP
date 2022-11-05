@@ -23,7 +23,7 @@ public class MainUI
                         break;
                     case 2:
                         MoviegoerUI moviegoer = new MoviegoerUI();
-                        moviegoer.movieGoerUI();
+                        moviegoer.moviegoerUI();
                         break;
                     case 3:
                         quit = true;
