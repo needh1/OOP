@@ -3,18 +3,28 @@ import java.time.*;
 
 public class Showing implements Serializable
 {
+    private String showingID;
     private String movieTitle;
     private String cineplexName;
     SeatLayout seating;
     LocalDate date;
     LocalTime time;
 
-    public Showing(String id, String cineplex, SeatLayout layout, LocalDate date, LocalTime time){
-        movieTitle = id;
+    public Showing(String id, String title, String cineplex, SeatLayout layout, LocalDate date, LocalTime time){
+        showingID = id;
+        movieTitle = title;
         cineplexName = cineplex;
         seating = layout;
         this.date = date;
         this.time = time;
+    }
+
+    public String getShowingID(){
+        return showingID;
+    }
+
+    public void setShowingID(String id){
+        showingID = id;
     }
 
     public String getMovieTitle(){
@@ -58,7 +68,8 @@ public class Showing implements Serializable
     }
 
     public void display(){
-        System.out.println("Movie title: " + movieTitle +
+        System.out.println("Showing ID: " + showingID +
+                            "Movie title: " + movieTitle +
                             " | Cineplex: " + cineplexName +
                             " | Cinema: " + seating.getCode() +
                             " | " + time + ", " + date);
