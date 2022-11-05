@@ -19,6 +19,7 @@ public class MovieStorage extends FileStorage
                 out.writeObject(allData);
                 out.flush();
                 out.close();
+                System.out.println("Movie added!");
             } catch (IOException e) {
                 e.printStackTrace();
             }
