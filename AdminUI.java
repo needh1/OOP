@@ -24,6 +24,8 @@ public class AdminUI
                         curListing.main();
                         break;
                     case 2:
+                        CURShowing curShowing = new CURShowing();
+                        curShowing.main();
                         break;
                     case 3:
                         break;
