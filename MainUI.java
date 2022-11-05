@@ -1,7 +1,7 @@
 import java.util.Scanner;
 
 
-public class UserUI
+public class MainUI
 {
     Scanner sc = new Scanner(System.in);
 
@@ -12,8 +12,9 @@ public class UserUI
         while(!quit){
             System.out.println("\n_______Welcome to MOBLIMA_______");
             System.out.println("1. Admin Login\n"+
-                                "2. Visitor Access\n"+
-                                "3. Quit");
+                                "2. Movie-goer Access\n"+
+                                "3. New Admin account"+
+                                "4. Quit");
             System.out.print("Enter choice: ");
             if (sc.hasNextInt()) {
                 switch(sc.nextInt()){
@@ -24,6 +25,8 @@ public class UserUI
                         movieGoerUI();
                         break;
                     case 3:
+                        registerAdmin();
+                    case 4:
                         quit = true;
                         break;
                     default:
@@ -123,5 +126,17 @@ public class UserUI
             InitializeCineplex initCineplex = new InitializeCineplex();
             initCineplex.initialize();
         }
+    }
+
+    public void registerAdmin(){
+        System.out.println("\n_______Register admin account_______");
+        System.out.print("Please enter new username: ");
+        String username = sc.nextLine();
+        System.out.print("Please enter password: ");
+        String password = sc.nextLine();
+        Admin newAdmin = new Admin(username, password);
+
+        AdminStorage storage = new AdminStorage();
+        storage.writeObject(newAdmin);
     }
 }
