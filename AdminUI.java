@@ -79,7 +79,7 @@ public class AdminUI
         AdminStorage storage = new AdminStorage();
         ArrayList<Admin> adminList = storage.read();
         for(Admin admin : adminList){
-            if(admin.getUsername() == username){
+            if(admin.getUsername().equals(username)){
                 System.out.println("Username already exists.");
                 return;
             }
