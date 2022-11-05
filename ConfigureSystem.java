@@ -16,7 +16,8 @@ public class ConfigureSystem
                                 "2. Delete Holiday\n"+
                                 "3. List Holidays\n"+
                                 "4. Update Price\n"+
-                                "5. Return");
+                                "5. Return\n");
+            System.out.print("Enter choice: ");
             if (sc.hasNextInt()) {
                 switch(sc.nextInt()){
                     case 1:

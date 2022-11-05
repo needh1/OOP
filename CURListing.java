@@ -12,7 +12,8 @@ public class CURListing
             System.out.println("1. Create movie listing\n"+
                                 "2. Update movie listing\n"+
                                 "3. Remove movie listing\n"+
-                                "4. Return");
+                                "4. Return\n");
+            System.out.print("Enter choice: ");
             if (sc.hasNextInt()) {
                 switch(sc.nextInt()){
                     case 1:
