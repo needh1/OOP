@@ -1,7 +1,7 @@
-public class InitializePrices
+public class InitializePrices extends Initializer
 {
     public InitializePrices(){}
-    
+
     public final void initialize(){
         PriceStorage storage = new PriceStorage();
 
