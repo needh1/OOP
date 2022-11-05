@@ -59,12 +59,21 @@ public class MainUI
     public void registerAdmin(){
         System.out.println("\n_______Register admin account_______");
         System.out.print("Please enter new username: ");
-        String username = sc.nextLine();
-        System.out.print("Please enter password: ");
-        String password = sc.nextLine();
-        Admin newAdmin = new Admin(username, password);
+        String username = sc.next();
 
         AdminStorage storage = new AdminStorage();
+        ArrayList<Admin> adminList = storage.read();
+        for(Admin admin : adminList){
+            if(admin.getUsername() == username){
+                System.out.println("Username already exists.");
+                return;
+            }
+        }
+        System.out.print("Please enter password: ");
+        String password = sc.next();
+        Admin newAdmin = new Admin(username, password);
+
+        
         storage.writeObject(newAdmin);
     }
 }
