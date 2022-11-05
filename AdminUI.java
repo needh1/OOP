@@ -28,6 +28,8 @@ public class AdminUI
                         curShowing.main();
                         break;
                     case 3:
+                        ConfigureSystem configure = new ConfigureSystem();
+                        configure.main();
                         break;
                     case 4:
                         break;
