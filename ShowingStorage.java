@@ -1,21 +1,20 @@
 import java.util.*;
 import java.io.*;
 
-
-public class TicketStorage extends FileStorage
+public class ShowingStorage extends FileStorage
 {
-    public final static String FILENAME = "tickets.txt";
+    public final static String FILENAME = "showing.txt";
 
     public void writeObject(Object o) {
-        if(o instanceof Ticket){
-            Ticket ticket = (Ticket) o;
-            ArrayList<Ticket> allData = new ArrayList<Ticket>();
+        if(o instanceof Showing){
+            Showing showing = (Showing) o;
+            ArrayList<Showing> allData = new ArrayList<Showing>();
             File file = new File(FILENAME);
             if (file.exists()) 
                 allData = read();
             try {
                 ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(FILENAME));
-                allData.add(ticket);
+                allData.add(showing);
                 out.writeObject(allData);
                 out.flush();
                 out.close();
@@ -26,21 +25,21 @@ public class TicketStorage extends FileStorage
     }
 
     @SuppressWarnings("unchecked")
-    public ArrayList<Ticket> read(){
+    public ArrayList<Showing> read(){
         try {
             ObjectInputStream ois = new ObjectInputStream(new FileInputStream(FILENAME));   
-            ArrayList<Ticket> ticketList = (ArrayList<Ticket>) ois.readObject();
+            ArrayList<Showing> showingList = (ArrayList<Showing>) ois.readObject();
             ois.close();
-            return ticketList;
+            return showingList;
         } catch (ClassNotFoundException e) {
             System.out.println("Object does not exist.");
         } catch (IOException e){
-            System.out.println("File does not exist.");
+            e.printStackTrace();
         }
-        return new ArrayList<Ticket>();
+        return new ArrayList<Showing>();
     }
 
-    public void replaceExistingFile(ArrayList<Ticket> data){
+    public void replaceExistingFile(ArrayList<Showing> data){
         File tempFile = new File(FILENAME);
         if (tempFile.exists()) 
             tempFile.delete();

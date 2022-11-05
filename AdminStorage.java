@@ -40,4 +40,18 @@ public class AdminStorage extends FileStorage
         }
         return new ArrayList<Admin>();
     }
+
+    public void replaceExistingFile(ArrayList<Admin> data){
+        File tempFile = new File(FILENAME);
+        if (tempFile.exists()) 
+            tempFile.delete();
+        try {
+            ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(FILENAME));
+            out.writeObject(data);
+            out.flush();
+            out.close();
+        } catch (IOException e) {
+            //
+        }
+    }
 }

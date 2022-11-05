@@ -38,4 +38,18 @@ public class HolidayStorage extends FileStorage
         }
         return new ArrayList<Holiday>();
     }
+
+    public void replaceExistingFile(ArrayList<Holiday> data){
+        File tempFile = new File(FILENAME);
+        if (tempFile.exists()) 
+            tempFile.delete();
+        try {
+            ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(FILENAME));
+            out.writeObject(data);
+            out.flush();
+            out.close();
+        } catch (IOException e) {
+            //
+        }
+    }
 }
