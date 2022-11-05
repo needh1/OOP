@@ -13,7 +13,7 @@ public class MainUI
             System.out.println("\n_______Welcome to MOBLIMA_______");
             System.out.println("1. Admin Login\n"+
                                 "2. Movie-goer Access\n"+
-                                "3. Quit");
+                                "3. Quit\n");
             System.out.print("Enter choice: ");
             if (sc.hasNextInt()) {
                 switch(sc.nextInt()){
