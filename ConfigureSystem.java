@@ -11,12 +11,12 @@ public class ConfigureSystem
     public void main(){
         boolean quit = false;
         while(!quit){
-            System.out.println("_____Configure System Settings____");
+            System.out.println("\n_____Configure System Settings____");
             System.out.println("1. Add Holiday\n"+
                                 "2. Delete Holiday\n"+
                                 "3. List Holidays\n"+
                                 "4. Update Price\n"+
-                                "5. Return\n");
+                                "5. Return");
             System.out.print("Enter choice: ");
             if (sc.hasNextInt()) {
                 switch(sc.nextInt()){
@@ -31,6 +31,7 @@ public class ConfigureSystem
                         break;
                     case 4:
                         updatePrice();
+                        sc.nextLine();
                         break;
                     case 5:
                         quit = true;
@@ -102,8 +103,13 @@ public class ConfigureSystem
     }
 
     private void updatePrice(){
-        System.out.println("____Update Price____");
+        System.out.println("\n____Update Price____");
         System.out.print("Select type:\n1. Student\n2. Senior\n3. Normal\n4. Weekend/Holiday\nEnter choice: ");
+        if(!sc.hasNextInt()){
+            System.out.println("Invalid input!\n");
+            sc.nextLine();
+            return;
+        }
         int personType = sc.nextInt();
         if(personType < 1 || personType > 4){
             System.out.println("Invalid choice!");
@@ -111,6 +117,11 @@ public class ConfigureSystem
         }
 
         System.out.print("\nSelect movie type:\n1. 2D\n2. 3D\nEnter choice: ");
+        if(!sc.hasNextInt()){
+            System.out.println("Invalid input!\n");
+            sc.nextLine();
+            return;
+        }
         int movieType = sc.nextInt();
         if(movieType < 1 || movieType > 2){
             System.out.println("Invalid choice!");
@@ -118,6 +129,11 @@ public class ConfigureSystem
         }
 
         System.out.print("\nSelect cinema type:\n1. Standard\n2. Premium\nEnter choice: ");
+        if(!sc.hasNextInt()){
+            System.out.println("Invalid input!\n");
+            sc.nextLine();
+            return;
+        }
         int cinemaType = sc.nextInt();
         if(cinemaType < 1 || cinemaType > 2){
             System.out.println("Invalid choice!");
@@ -125,6 +141,11 @@ public class ConfigureSystem
         }
 
         System.out.print("\nEnter new price: ");
+        if(!sc.hasNextDouble() || !sc.hasNextInt()){
+            System.out.println("Invalid input!\n");
+            sc.nextLine();
+            return;
+        }
         double price = sc.nextDouble();
         if(price < 0){
             System.out.println("Invalid price!");
