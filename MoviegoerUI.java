@@ -3,6 +3,7 @@ import java.util.Scanner;
 
 public class MoviegoerUI 
 {
+    enum Search { ID, title };
     Scanner sc = new Scanner(System.in);
 
     public void moviegoerUI(){
@@ -47,6 +48,7 @@ public class MoviegoerUI
     private void search() {
         MovieStorage storage = new MovieStorage();
         ArrayList<Movie> movieList = storage.read();
+        Search type;
         boolean quit = false;
         while(!quit){
             System.out.println("\n_____Search/List Movies_____");
@@ -57,20 +59,12 @@ public class MoviegoerUI
             if (sc.hasNextInt()) {
                 switch(sc.nextInt()){
                     case 1:
-                        Movie movie = searchID(movieList);
-                        if (movie == null) break;
-                        else {
-                            MovieMenu movieMenu = new MovieMenu();
-                            movieMenu.main(movie);
-                        }
+                        type = Search.ID;
+                        search(movieList, type);
                         break;
                     case 2:
-                        Movie movie2 = searchTitle(movieList);
-                        if (movie2 == null) break;
-                        else {
-                            MovieMenu movieMenu = new MovieMenu();
-                            movieMenu.main(movie2);
-                        }
+                        type = Search.title;
+                        search(movieList, type);
                         break;
                     case 3:
                         quit = true;
@@ -86,30 +80,29 @@ public class MoviegoerUI
         }
     }
 
-    private Movie searchID(ArrayList<Movie> movieList){     
-        System.out.print("Enter movie ID: ");
-        String movieID = sc.next();
-        for(Movie movie : movieList){
-            if(movie.getMovieID().equals(movieID)){
-                System.out.println("Movie found!");
-                return movie;
-            }  
+    private void search(ArrayList<Movie> movieList, Search type){     
+        String text = String.format("Enter movie %s: ", type.toString());
+        System.out.print(text);
+        String input = sc.next();
+        if (type == Search.ID) {
+            for(Movie movie : movieList){
+                if(movie.getMovieID().equals(input)){
+                    System.out.println("Movie found!");
+                    MovieMenu movieMenu = new MovieMenu();
+                    movieMenu.main(movie);;
+                }  
+            }
+        }
+        else if (type == Search.title) {
+            for(Movie movie : movieList){
+                if(movie.getMovieTitle().equals(input)){
+                    System.out.println("Movie found!");
+                    MovieMenu movieMenu = new MovieMenu();
+                    movieMenu.main(movie);;
+                }  
+            }
         }
         System.out.println("Movie not found!");
-        return null;
-    }
-    
-    private Movie searchTitle(ArrayList<Movie> movieList){     
-        System.out.print("Enter movie title: ");
-        String movieTitle = sc.next();
-        for(Movie movie : movieList){
-            if(movie.getMovieTitle().equals(movieTitle)){
-                System.out.println("Movie found!");
-                return movie;
-            }  
-        }
-        System.out.println("Movie not found!");
-        return null;
     }
 
     private void list() {
