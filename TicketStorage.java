@@ -1,11 +1,20 @@
 import java.util.*;
 import java.io.*;
 
-
+/**
+ * Represents a storage handler for ticket records.
+ * Used to store and retrieve ticket records.
+ */
 public class TicketStorage extends FileStorage
 {
+    /**
+     * The file where showing records will be stored in.
+     */
     public final static String FILENAME = "tickets.txt";
-
+    /**
+     * Adds the given ticket record into the storage file.
+     * @param o Ticket record to be stored into the file.
+     */
     public void writeObject(Object o) {
         if(o instanceof Ticket){
             Ticket ticket = (Ticket) o;
@@ -24,7 +33,10 @@ public class TicketStorage extends FileStorage
             }
         }
     }
-
+    /**
+     * Retrieves all the ticket records in the storage file.
+     * @return {@link Ticket} Returns list of ticket records if found, else an empty list.
+     */
     @SuppressWarnings("unchecked")
     public ArrayList<Ticket> read(){
         try {
@@ -39,7 +51,10 @@ public class TicketStorage extends FileStorage
         }
         return new ArrayList<Ticket>();
     }
-
+    /**
+     * Replaces the existing list of ticket records with the given list.
+     * @param data new list of ticket records.
+     */
     public void replaceExistingFile(ArrayList<Ticket> data){
         File tempFile = new File(FILENAME);
         if (tempFile.exists()) 

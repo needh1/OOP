@@ -3,11 +3,15 @@ import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.Scanner;
-
+/**
+ * Used by admin to configure system settings.
+ */
 public class ConfigureSystem
 {
     Scanner sc = new Scanner(System.in);
-
+    /**
+     * Main program to display options.
+     */
     public void main(){
         boolean quit = false;
         while(!quit){
@@ -46,7 +50,9 @@ public class ConfigureSystem
             }
         }
     }
-
+    /**
+     * Adds a new Holiday into the system.
+     */
     private void addHoliday(){
         HolidayStorage storage = new HolidayStorage();
         ArrayList<Holiday> holidayList = storage.read();
@@ -72,7 +78,9 @@ public class ConfigureSystem
         Holiday newHoliday = new Holiday(id, date);
         storage.writeObject(newHoliday);
     }
-
+    /**
+     * Deletes an existing holiday from system.
+     */
     private void deleteHoliday(){
         HolidayStorage storage = new HolidayStorage();
         ArrayList<Holiday> holidayList = storage.read();
@@ -87,7 +95,9 @@ public class ConfigureSystem
         }
         System.out.println("HolidayID not in system.");
     }
-
+    /**
+     * Lists out all existing holidays.
+     */
     private void listHoliday(){
         HolidayStorage storage = new HolidayStorage();
         ArrayList<Holiday> holidayList = storage.read();
@@ -101,7 +111,9 @@ public class ConfigureSystem
         }
         System.out.println();
     }
-
+    /**
+     * Updates the prices of movie tickets.
+     */
     private void updatePrice(){
         System.out.println("\n____Update Price____");
         System.out.print("Select type:\n1. Student\n2. Senior\n3. Normal\n4. Weekend/Holiday\nEnter choice: ");

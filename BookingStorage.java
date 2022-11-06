@@ -1,11 +1,21 @@
 import java.util.*;
 import java.io.*;
 
-
+/**
+ * Represents a storage handler for booking records.
+ * Used to store and retrieve booking records.
+ */
 public class BookingStorage extends FileStorage
 {
+    /**
+     * The file where booking records will be stored in.
+     */
     public final static String FILENAME = "bookings.txt";
-
+    
+    /**
+     * Adds the given booking record into the storage file.
+     * @param o Booking record to be stored into the file.
+     */
     public void writeObject(Object o) {
         if(o instanceof Booking){
             Booking booking = (Booking) o;
@@ -25,6 +35,10 @@ public class BookingStorage extends FileStorage
         }
     }
 
+    /**
+     * Retrieves all the booking records in the storage file.
+     * @return {@link Booking} Returns list of booking records if found, else an empty list.
+     */
     @SuppressWarnings("unchecked")
     public ArrayList<Booking> read(){
         try {
@@ -39,7 +53,10 @@ public class BookingStorage extends FileStorage
         }
         return new ArrayList<Booking>();
     }
-
+    /**
+     * Replaces the existing list of booking records with the given list.
+     * @param data new list of booking records.
+     */
     public void replaceExistingFile(ArrayList<Booking> data){
         File tempFile = new File(FILENAME);
         if (tempFile.exists()) 

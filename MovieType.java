@@ -1,4 +1,6 @@
-
+/**
+ * Enumerated type for better readability and easier referencing to attribute 
+ */
 
 public enum MovieType {
     _2D("2D"),

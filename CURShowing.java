@@ -4,11 +4,15 @@ import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.Scanner;
-
+/**
+ * Allows admin to create, update or remove movie showings.
+ */
 public class CURShowing
 {
     Scanner sc = new Scanner(System.in);
-
+    /**
+     * Main program to display options.
+     */
     public void main(){
         boolean quit = false;
         while(!quit){
@@ -42,7 +46,9 @@ public class CURShowing
             }
         }
     }
-    
+    /**
+     * Creates a new movie showing.
+     */
     private void create(){
         ShowingStorage showingStore = new ShowingStorage();
         System.out.println("Enter new showing ID: ");
@@ -130,7 +136,9 @@ public class CURShowing
         Showing newShowing = new Showing(showingID, movieName, cineplexName, layout, date, time);
         showingStore.writeObject(newShowing);
     }
-
+    /**
+     * Updates an existing movie showing.
+     */
     private void update(){
         ShowingStorage storage = new ShowingStorage();
         System.out.println("Enter showing ID: ");
@@ -245,7 +253,9 @@ public class CURShowing
             return;
         }
     }
-
+    /**
+     * Removes an existing movie showing.
+     */
     private void remove(){
         System.out.print("Enter showing ID to remove: ");
         String id = sc.next();

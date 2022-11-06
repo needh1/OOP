@@ -1,7 +1,15 @@
+/**
+ * Used if system does not contain any ticket prices.
+ */
 public class InitializePrices extends Initializer
 {
+    /**
+     * Constructor for class.
+     */
     public InitializePrices(){}
-
+    /**
+     * Initializes prices for all ticket types.
+     */
     public final void initialize(){
         PriceStorage storage = new PriceStorage();
 

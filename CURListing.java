@@ -1,10 +1,14 @@
 import java.util.ArrayList;
 import java.util.Scanner;
-
+/**
+ * Allows admin to create, update or remove movie listings.
+ */
 public class CURListing
 {
     Scanner sc = new Scanner(System.in);
-
+    /**
+     * Main program to display options.
+     */
     public void main(){
         boolean quit = false;
         while(!quit){
@@ -37,7 +41,9 @@ public class CURListing
             }
         }
     }
-
+    /**
+     * Creates a new movie listing in the system.
+     */
     private void create(){
         System.out.print("Enter movie ID: ");
         String id = sc.next();
@@ -98,7 +104,9 @@ public class CURListing
         Movie newMovie = new Movie(id, title, type, duration, status, synopsis, director, cast, 0);
         storage.writeObject(newMovie);
     }
-
+    /**
+     * Updates an existing movie listing.
+     */
     private void update(){
         MovieStorage storage = new MovieStorage();
 
@@ -218,7 +226,9 @@ public class CURListing
             return;
         }
     }
-
+    /**
+     * Removes an existing movie listing.
+     */
     private void remove(){
         System.out.print("Enter movie ID to remove: ");
         String id = sc.next();

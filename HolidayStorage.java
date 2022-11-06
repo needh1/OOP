@@ -1,10 +1,19 @@
 import java.util.*;
 import java.io.*;
-
+/**
+ * Represents a storage handler for holiday records.
+ * Used to store and retrieve holiday records.
+ */
 public class HolidayStorage extends FileStorage
 {
+    /**
+     * The file where holiday records will be stored in.
+     */
     public final static String FILENAME = "holiday.txt";
-
+    /**
+     * Adds the given holiday record into the storage file.
+     * @param o Holiday record to be stored into the file.
+     */
     public void writeObject(Object o) {
         if(o instanceof Holiday){
             Holiday holiday = (Holiday) o;
@@ -18,12 +27,16 @@ public class HolidayStorage extends FileStorage
                 out.writeObject(allData);
                 out.flush();
                 out.close();
+                System.out.println("Holiday successfully added!");
             } catch (IOException e) {
 
             }
         }
     }
-
+    /**
+     * Retrieves all the holiday records in the storage file.
+     * @return {@link Holiday} Returns list of holdiay records if found, else an empty list.
+     */
     @SuppressWarnings("unchecked")
     public ArrayList<Holiday> read(){
         try {
@@ -38,7 +51,10 @@ public class HolidayStorage extends FileStorage
         }
         return new ArrayList<Holiday>();
     }
-
+    /**
+     * Replaces the existing list of holiday records with the given list.
+     * @param data new list of holiday records.
+     */
     public void replaceExistingFile(ArrayList<Holiday> data){
         File tempFile = new File(FILENAME);
         if (tempFile.exists()) 
@@ -48,6 +64,7 @@ public class HolidayStorage extends FileStorage
             out.writeObject(data);
             out.flush();
             out.close();
+            System.out.println("Holiday removed successfully!");
         } catch (IOException e) {
             //
         }

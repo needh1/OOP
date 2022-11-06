@@ -1,11 +1,21 @@
 import java.util.*;
 import java.io.*;
 
-
+/**
+ * Represents a storage handler for admin accounts.
+ * Used to store and retrieve admin account records.
+ */
 public class AdminStorage extends FileStorage
 {
+    /**
+     * The file where admin account records will be stored in.
+     */
     public final static String FILENAME = "admin.txt";
 
+    /**
+     * Adds the given admin account into the storage file.
+     * @param o Admin account to be stored into the file.
+     */
     public void writeObject(Object o) {
         if(o instanceof Admin){
             Admin admin = (Admin) o;
@@ -26,6 +36,10 @@ public class AdminStorage extends FileStorage
         }
     }
 
+    /**
+     * Retrieves all the admin account records in the storage file.
+     * @return {@link Admin} Returns list of admin accounts if found, else an empty list.
+     */
     @SuppressWarnings("unchecked")
     public ArrayList<Admin> read(){
         try {
@@ -41,6 +55,10 @@ public class AdminStorage extends FileStorage
         return new ArrayList<Admin>();
     }
 
+    /**
+     * Replaces the existing list of admin accounts with the given list.
+     * @param data new list of admin accounts.
+     */
     public void replaceExistingFile(ArrayList<Admin> data){
         File tempFile = new File(FILENAME);
         if (tempFile.exists()) 

@@ -1,5 +1,11 @@
+/**
+ * Used if system does not contain any cineplexes.
+ */
 public class InitializeCineplex extends Initializer
 {
+    /**
+     * Initializes 3 new cineplexes with 3 cinemas each.
+     */
     public final void initialize(){
         CineplexStorage storage = new CineplexStorage();
 

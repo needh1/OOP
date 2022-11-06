@@ -1,10 +1,19 @@
 import java.util.*;
 import java.io.*;
-
+/**
+ * Represents a storage handler for showing records.
+ * Used to store and retrieve showing records.
+ */
 public class ShowingStorage extends FileStorage
 {
+    /**
+     * The file where showing records will be stored in.
+     */
     public final static String FILENAME = "showing.txt";
-
+    /**
+     * Adds the given showing record into the storage file.
+     * @param o Showing record to be stored into the file.
+     */
     public void writeObject(Object o) {
         if(o instanceof Showing){
             Showing showing = (Showing) o;
@@ -23,7 +32,10 @@ public class ShowingStorage extends FileStorage
             }
         }
     }
-
+    /**
+     * Retrieves all the showing records in the storage file.
+     * @return {@link Showing} Returns list of showing records if found, else an empty list.
+     */
     @SuppressWarnings("unchecked")
     public ArrayList<Showing> read(){
         try {
@@ -38,7 +50,10 @@ public class ShowingStorage extends FileStorage
         }
         return new ArrayList<Showing>();
     }
-
+    /**
+     * Replaces the existing list of showing records with the given list.
+     * @param data new list of showing records.
+     */
     public void replaceExistingFile(ArrayList<Showing> data){
         File tempFile = new File(FILENAME);
         if (tempFile.exists()) 

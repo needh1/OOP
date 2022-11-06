@@ -1,11 +1,21 @@
 import java.util.*;
 import java.io.*;
 
-
+/**
+ * Represents a storage handler for Cineplexes.
+ * Used to store and retrieve Cineplexes.
+ */
 public class CineplexStorage extends FileStorage
 {
+    /**
+     * The file where cineplex information will be stored in.
+     */
     public final static String FILENAME = "cineplex.txt";
 
+    /**
+     * Adds the given cineplex into the storage file.
+     * @param o Cineplex information to be stored into the file.
+     */
     public void writeObject(Object o) {
         if(o instanceof Cineplex){
             Cineplex cineplex = (Cineplex) o;
@@ -25,6 +35,10 @@ public class CineplexStorage extends FileStorage
         }
     }
 
+    /**
+     * Retrieves all the cineplexes in the storage file.
+     * @return {@link Cineplex} Returns list of cineplexes if found, else an empty list.
+     */
     @SuppressWarnings("unchecked")
     public ArrayList<Cineplex> read(){
         try {

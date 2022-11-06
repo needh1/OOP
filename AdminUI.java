@@ -5,7 +5,9 @@ public class AdminUI
 {
     Scanner sc = new Scanner(System.in);
 
-
+    /**
+     * Method to display menu for admin to use.
+     */
     public void adminUI(){
         boolean loggedIn = verify();
         while(loggedIn){
@@ -13,9 +15,8 @@ public class AdminUI
             System.out.println("1. Create/Update/Remove movie Listing\n"+
                                 "2. Create/Update/Remove movie showings\n"+
                                 "3. Configure system settings\n"+
-                                "4. Search/List movie\n"+
-                                "5. Create new admin account\n"+
-                                "6. Return\n");
+                                "4. Create new admin account\n"+
+                                "5. Return\n");
             System.out.print("Enter choice: ");
             if (sc.hasNextInt()) {
                 switch(sc.nextInt()){
@@ -32,11 +33,9 @@ public class AdminUI
                         configure.main();
                         break;
                     case 4:
-                        break;
-                    case 5:
                         registerAdmin();
                         break;
-                    case 6:
+                    case 5:
                         loggedIn = false;
                         break;
                     default:
@@ -50,11 +49,16 @@ public class AdminUI
         }
     }
 
+    /**
+     * Verifies if user is a valid admin.
+     * @return true if user enters a valid username and password, false otherwise.
+     */
     private boolean verify(){
         System.out.print("Please enter username: ");
         String username = sc.next();
         System.out.print("Please enter password: ");
         String password = sc.next();
+        sc.nextLine();
 
         AdminStorage storage = new AdminStorage();
         ArrayList<Admin> adminList = storage.read();
@@ -71,7 +75,11 @@ public class AdminUI
         return false;
     }
 
-    public void registerAdmin(){
+    /**
+     * Registers a new admin account.
+     * Can only be used by a valid admin.
+     */
+    private void registerAdmin(){
         System.out.println("\n_______Register admin account_______");
         System.out.print("Please enter new username: ");
         String username = sc.next();

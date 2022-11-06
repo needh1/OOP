@@ -1,3 +1,6 @@
+/**
+ * Enumerated type for better readability and easier referencing to attribute 
+ */
 public enum PricingType
 {
     STUDENT_2D_STANDARD("Student, 2D, Standard"),
