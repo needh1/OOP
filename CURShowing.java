@@ -38,7 +38,6 @@ public class CURShowing
             }
             else {
                 System.out.println("Please enter an integer!\n");
-                sc.nextLine();
             }
         }
     }
