@@ -12,8 +12,7 @@ public class CURListing
             System.out.println("1. Create movie listing\n"+
                                 "2. Update movie listing\n"+
                                 "3. Remove movie listing\n"+
-                                "4. Return\n");
-            System.out.print("Enter choice: ");
+                                "4. Return");
             if (sc.hasNextInt()) {
                 switch(sc.nextInt()){
                     case 1:
@@ -76,6 +75,11 @@ public class CURListing
         }
 
         System.out.print("Enter movie duration: ");
+        if(!sc.hasNextDouble()){
+            System.out.println("Invalid input!\n");
+            sc.nextLine();
+            return;
+        }
         double duration = sc.nextDouble();
 
         sc.nextLine();
@@ -159,6 +163,11 @@ public class CURListing
                     break;
                 case 3:
                     System.out.print("Enter new duration: ");
+                    if(!sc.hasNextDouble()){
+                        System.out.println("Invalid input!\n");
+                        sc.nextLine();
+                        return;
+                    }
                     double newDuration = sc.nextDouble();
                     movieList.get(getIndex(movieList, id)).setDuration(newDuration);
                     break;

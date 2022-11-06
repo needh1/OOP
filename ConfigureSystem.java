@@ -141,7 +141,7 @@ public class ConfigureSystem
         }
 
         System.out.print("\nEnter new price: ");
-        if(!sc.hasNextDouble() || !sc.hasNextInt()){
+        if(!sc.hasNextDouble()){
             System.out.println("Invalid input!\n");
             sc.nextLine();
             return;
