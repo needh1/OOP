@@ -1,13 +1,16 @@
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Scanner;
 
 public class MoviegoerUI 
 {
     enum Search { ID, title };
-    enum Rank { sales, ratings };
+    enum Rank { Sales, Ratings };
     Scanner sc = new Scanner(System.in);
 
     public void moviegoerUI(){
+        Rank type;
         boolean quit = false;
         while(!quit){
             System.out.println("\n_____Movie-goer_____");
@@ -27,8 +30,12 @@ public class MoviegoerUI
                         list();
                         break;
                     case 3:
+                        type = Rank.Sales;
+                        rank(type);
                         break;
                     case 4:
+                        type = Rank.Ratings;
+                        rank(type);
                         break;
                     case 5:
                         break;
@@ -135,4 +142,30 @@ public class MoviegoerUI
         }
     }
 
+    private void rank(Rank type) {
+        MovieStorage storage = new MovieStorage();
+        ArrayList<Movie> movieList = storage.read();
+        String text = String.format("\n____Top 5 by %s____", type.toString());
+        System.out.print(text);
+        if (type == Rank.Sales) {
+            Collections.sort(movieList, Movie.COMPARE_BY_SALES);
+            Collections.reverse(movieList);
+            for (int i = 0; i < Math.min(5, movieList.size()); i++) {
+                String top = String.format("\n%d. %s\t\t %d", i, movieList.get(i).getMovieTitle(), movieList.get(i).getTicketSales());
+                System.out.print(top);
+            }
+        }
+        else if (type == Rank.Ratings) {
+            for (int i = 0; i < movieList.size(); i++) {
+                if (movieList.get(i).numReview() < 2) movieList.remove(i);
+            }
+            Collections.sort(movieList, Movie.COMPARE_BY_RATINGS);
+            Collections.reverse(movieList);
+            for (int i = 0; i < Math.min(5, movieList.size()); i++) {
+                String top = String.format("\n%d. %s\t\t %,.1f", i, movieList.get(i).getMovieTitle(), movieList.get(i).avgRating());
+                System.out.print(top);
+            }
+        }
+        System.out.println();
+    }
 }

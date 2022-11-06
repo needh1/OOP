@@ -1,5 +1,6 @@
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Comparator;
 
 public class Movie implements Serializable
 {	
@@ -131,11 +132,22 @@ public class Movie implements Serializable
 		return reviewList.size();
 	}
 	
-	public int avgRating() {
+	public double avgRating() {
 		int total = 0;
 		for(Review r : reviewList)
 		    total += r.getReviewRating();
 		return total / numReview();
 	}
 	
+	public static Comparator<Movie> COMPARE_BY_SALES = new Comparator<Movie>() {
+        public int compare(Movie one, Movie other) {
+            return Integer.compare(one.ticketSales, other.ticketSales);
+        }
+    };
+
+    public static Comparator<Movie> COMPARE_BY_RATINGS = new Comparator<Movie>() {
+        public int compare(Movie one, Movie other) {
+            return Double.compare(one.avgRating(), other.avgRating());
+        }
+    };
 }
