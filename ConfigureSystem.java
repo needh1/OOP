@@ -102,6 +102,61 @@ public class ConfigureSystem
     }
 
     private void updatePrice(){
-        
+        System.out.println("____Update Price____");
+        System.out.print("Select type:\n1. Student\n2. Senior\n3. Normal\n4. Weekend/Holiday\nEnter choice: ");
+        int personType = sc.nextInt();
+        if(personType < 1 || personType > 4){
+            System.out.println("Invalid choice!");
+            return;
+        }
+
+        System.out.print("\nSelect movie type:\n1. 2D\n2. 3D\nEnter choice: ");
+        int movieType = sc.nextInt();
+        if(movieType < 1 || movieType > 2){
+            System.out.println("Invalid choice!");
+            return;
+        }
+
+        System.out.print("\nSelect cinema type:\n1. Standard\n2. Premium\nEnter choice: ");
+        int cinemaType = sc.nextInt();
+        if(cinemaType < 1 || cinemaType > 2){
+            System.out.println("Invalid choice!");
+            return;
+        }
+
+        System.out.print("\nEnter new price: ");
+        double price = sc.nextDouble();
+        if(price < 0){
+            System.out.println("Invalid price!");
+            return;
+        }
+
+        PriceStorage storage = new PriceStorage();
+        Price prices = storage.read();
+        if(personType == 1){
+            if(movieType == 1 && cinemaType == 1){prices.changePrice(PricingType.STUDENT_2D_STANDARD, price);}
+            else if(movieType == 1 && cinemaType == 2){prices.changePrice(PricingType.STUDENT_2D_PREMIUM, price);}
+            else if(movieType == 2 && cinemaType == 1){prices.changePrice(PricingType.STUDENT_3D_STANDARD, price);}
+            else {prices.changePrice(PricingType.STUDENT_3D_PREMIUM, price);}
+        }
+        else if(personType == 2){
+            if(movieType == 1 && cinemaType == 1){prices.changePrice(PricingType.SENIOR_2D_STANDARD, price);}
+            else if(movieType == 1 && cinemaType == 2){prices.changePrice(PricingType.SENIOR_2D_PREMIUM, price);}
+            else if(movieType == 2 && cinemaType == 1){prices.changePrice(PricingType.SENIOR_3D_STANDARD, price);}
+            else {prices.changePrice(PricingType.SENIOR_3D_PREMIUM, price);}
+        }
+        else if(personType == 3){
+            if(movieType == 1 && cinemaType == 1){prices.changePrice(PricingType.NORMAL_2D_STANDARD, price);}
+            else if(movieType == 1 && cinemaType == 2){prices.changePrice(PricingType.NORMAL_2D_PREMIUM, price);}
+            else if(movieType == 2 && cinemaType == 1){prices.changePrice(PricingType.NORMAL_3D_STANDARD, price);}
+            else {prices.changePrice(PricingType.NORMAL_3D_PREMIUM, price);}
+        }
+        else {
+            if(movieType == 1 && cinemaType == 1){prices.changePrice(PricingType.WEEKEND_2D_STANDARD, price);}
+            else if(movieType == 1 && cinemaType == 2){prices.changePrice(PricingType.WEEKEND_2D_PREMIUM, price);}
+            else if(movieType == 2 && cinemaType == 1){prices.changePrice(PricingType.WEEKEND_3D_STANDARD, price);}
+            else {prices.changePrice(PricingType.WEEKEND_3D_PREMIUM, price);}
+        }
+        storage.writeObject(prices);
     }
 }
