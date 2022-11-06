@@ -4,6 +4,7 @@ import java.util.Scanner;
 public class MoviegoerUI 
 {
     enum Search { ID, title };
+    enum Rank { sales, ratings };
     Scanner sc = new Scanner(System.in);
 
     public void moviegoerUI(){
@@ -46,8 +47,6 @@ public class MoviegoerUI
     }
 
     private void search() {
-        MovieStorage storage = new MovieStorage();
-        ArrayList<Movie> movieList = storage.read();
         Search type;
         boolean quit = false;
         while(!quit){
@@ -60,11 +59,11 @@ public class MoviegoerUI
                 switch(sc.nextInt()){
                     case 1:
                         type = Search.ID;
-                        search(movieList, type);
+                        search(type);
                         break;
                     case 2:
                         type = Search.title;
-                        search(movieList, type);
+                        search(type);
                         break;
                     case 3:
                         quit = true;
@@ -80,7 +79,9 @@ public class MoviegoerUI
         }
     }
 
-    private void search(ArrayList<Movie> movieList, Search type){     
+    private void search(Search type){ 
+        MovieStorage storage = new MovieStorage();
+        ArrayList<Movie> movieList = storage.read();    
         String text = String.format("Enter movie %s: ", type.toString());
         System.out.print(text);
         String input = sc.next();
