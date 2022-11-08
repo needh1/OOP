@@ -20,7 +20,8 @@ public class ConfigureSystem
                                 "2. Delete Holiday\n"+
                                 "3. List Holidays\n"+
                                 "4. Update Price\n"+
-                                "5. Return");
+                                "5. Change Top 5 display settings\n"+
+                                "6. Return");
             System.out.print("Enter choice: ");
             if (sc.hasNextInt()) {
                 switch(sc.nextInt()){
@@ -38,6 +39,9 @@ public class ConfigureSystem
                         sc.nextLine();
                         break;
                     case 5:
+                        displaySettings();
+                        break;
+                    case 6:
                         quit = true;
                         break;
                     default:
@@ -191,5 +195,51 @@ public class ConfigureSystem
             else {prices.changePrice(PricingType.WEEKEND_3D_PREMIUM, price);}
         }
         storage.writeObject(prices);
+    }
+    
+    /**
+     * Updates Top 5 display settings.
+     */
+    private void displaySettings(){
+        Top5Storage storage = new Top5Storage();
+        Top5Valid settings = storage.read();
+        System.out.println("\nSelect option to change:\n"+
+                            "1. Top 5 by sales\n"+
+                            "2. Top 5 by ratings\n");
+        System.out.print("Enter choice: ");
+        if (sc.hasNextInt()) {
+            switch(sc.nextInt()){
+                case 1:
+                    System.out.print("\nEnter new setting (true/false): ");
+                    if(sc.hasNextBoolean()){
+                        settings.setSales(sc.nextBoolean());
+                        storage.writeObject(storage);
+                    }
+                    else{
+                        System.out.println("Invalid value!\n");
+                        sc.nextLine();
+                        return;
+                    }
+                    break;
+                case 2:
+                    System.out.print("\nEnter new setting (true/false): ");
+                    if(sc.hasNextBoolean()){
+                        settings.setRating(sc.nextBoolean());
+                        storage.writeObject(storage);
+                    }
+                    else{
+                        System.out.println("Invalid value!\n");
+                        sc.nextLine();
+                        return;
+                    }
+                    break;
+                default:
+                    System.out.println("Invalid choice!\n");
+            }
+        }
+        else {
+            System.out.println("Please enter an integer!\n");
+            sc.nextLine();
+        }
     }
 }
