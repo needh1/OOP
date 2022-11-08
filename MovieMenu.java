@@ -1,4 +1,7 @@
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.Scanner;
 
 public class MovieMenu 
@@ -25,6 +28,7 @@ public class MovieMenu
                         review(movie);
                         break;
                     case 3:
+                        showtimes(movie).getSeating().printLayout();
                         break;
                     case 4:
                         break;
@@ -127,4 +131,74 @@ public class MovieMenu
         System.out.println("Review has been added!");
     }
 
+    private Showing showtimes(Movie movie) {
+        ShowingStorage storage = new ShowingStorage();
+        ArrayList<Showing> showingList = storage.read();
+        ArrayList<Showing> movieShowing = new ArrayList<>();
+        ArrayList<LocalDate> dateShowing = new ArrayList<>();
+        ArrayList<Showing> timeShowing = new ArrayList<>();
+        showingList.sort(Comparator.comparing(Showing::getDate));
+        for (Showing show : showingList){
+            if (movie.getMovieTitle() == show.getMovieTitle()) movieShowing.add(show);
+        }
+        for (Showing show : movieShowing){
+            if (dateShowing.contains(show.getDate()) == false) dateShowing.add(show.getDate());
+        }    
+
+        while(true){
+            System.out.println("\n_____Dates_____");
+            for (int i = 0; i < dateShowing.size(); i++) {
+                String formattedDate = dateShowing.get(i).format(DateTimeFormatter.ofPattern("dd-MMM-yy"));
+                String text = String.format("%d. %s", i+1, formattedDate);
+                System.out.println(text);
+            }
+            System.out.println("\n0. Return\n");      
+            System.out.print("Enter choice: ");
+            if (sc.hasNextInt()) {
+                int choice = sc.nextInt();
+                if (choice == 0) return null;
+                if (choice < 0 || choice > dateShowing.size()){
+                    System.out.println("Invalid Input!\n");
+                    continue;
+                }
+                LocalDate date = dateShowing.get(choice-1);
+                for (Showing show : movieShowing){
+                    if (show.getDate() == date) timeShowing.add(show);
+                }
+                timeShowing.sort(Comparator.comparing(Showing::getTime));
+                boolean quit = false;
+                while(!quit) {
+                    System.out.println("\n_____Timings_____");
+                    for (int i = 0; i < timeShowing.size(); i++) {
+                        String formattedTime = timeShowing.get(i).getTime().format(DateTimeFormatter.ofPattern("HH:mm"));
+                        String text = String.format("%d. %s", i+1, formattedTime);
+                        System.out.println(text);
+                    }
+                    System.out.println("\n0. Return\n");      
+                    System.out.print("Enter choice: ");
+                    if (sc.hasNextInt()) {
+                        choice = sc.nextInt();
+                        if (choice == 0) {
+                            quit = true;
+                            continue;
+                        }
+                        if (choice < 0 || choice > timeShowing.size()){
+                            System.out.println("Invalid Input!\n");
+                            continue;
+                        }
+                        System.out.println("\n___Seating Availability___");
+                        return timeShowing.get(choice-1);
+                    }
+                    else {
+                        System.out.println("Please enter an integer!\n");
+                        sc.nextLine();
+                    }
+                }
+            }
+            else {
+                System.out.println("Please enter an integer!\n");
+                sc.nextLine();
+            }   
+        }
+    }
 }
