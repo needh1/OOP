@@ -196,7 +196,6 @@ public class ConfigureSystem
         }
         storage.writeObject(prices);
     }
-    
     /**
      * Updates Top 5 display settings.
      */
@@ -213,7 +212,7 @@ public class ConfigureSystem
                     System.out.print("\nEnter new setting (true/false): ");
                     if(sc.hasNextBoolean()){
                         settings.setSales(sc.nextBoolean());
-                        storage.writeObject(storage);
+                        storage.writeObject(settings);
                     }
                     else{
                         System.out.println("Invalid value!\n");
@@ -225,7 +224,7 @@ public class ConfigureSystem
                     System.out.print("\nEnter new setting (true/false): ");
                     if(sc.hasNextBoolean()){
                         settings.setRating(sc.nextBoolean());
-                        storage.writeObject(storage);
+                        storage.writeObject(settings);
                     }
                     else{
                         System.out.println("Invalid value!\n");
