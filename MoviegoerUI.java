@@ -11,6 +11,8 @@ public class MoviegoerUI
     public void moviegoerUI(){
         Rank type;
         boolean quit = false;
+        Top5Storage top5 = new Top5Storage();
+        Top5Valid valid = top5.read();
         while(!quit){
             System.out.println("\n_____Movie-goer_____");
             System.out.println("1. Search movies\n"+
@@ -29,10 +31,12 @@ public class MoviegoerUI
                         list();
                         break;
                     case 3:
+                        if(!valid.checkSales()){break;}
                         type = Rank.Sales;
                         rank(type);
                         break;
                     case 4:
+                        if(!valid.checkRating()){break;}
                         type = Rank.Ratings;
                         rank(type);
                         break;
