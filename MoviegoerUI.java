@@ -172,9 +172,14 @@ public class MoviegoerUI
             movieList.removeAll(lessThan2);
             Collections.sort(movieList, Movie.COMPARE_BY_RATINGS);
             Collections.reverse(movieList);
-            for (int i = 0; i < Math.min(5, movieList.size()); i++) {
-                String top = String.format("\n%d. %s\t\t %,.1f", i, movieList.get(i).getMovieTitle(), movieList.get(i).avgRating());
-                System.out.print(top);
+            if(movieList.size() == 0){
+                System.out.println("\nThere are no movies with sufficient reviews.");
+            }
+            else{
+                for (int i = 0; i < Math.min(5, movieList.size()); i++) {
+                    String top = String.format("\n%d. %s\t\t %,.1f", i, movieList.get(i).getMovieTitle(), movieList.get(i).avgRating());
+                    System.out.print(top);
+                }
             }
         }
         System.out.println();
