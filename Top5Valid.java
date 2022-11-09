@@ -1,8 +1,9 @@
+import java.io.Serializable;
 
 /**
  * Represents saved settings to check if top 5 movies can be displayed to movie-goers by sales/rating.
  */
-public class Top5Valid
+public class Top5Valid implements Serializable
 {
     private boolean sales;
     private boolean rating;
