@@ -31,12 +31,18 @@ public class MoviegoerUI
                         list();
                         break;
                     case 3:
-                        if(!valid.checkSales()){break;}
+                        if(!valid.checkSales()){
+                            System.out.println("Option has been disabled by admin.");
+                            break;
+                        }
                         type = Rank.Sales;
                         rank(type);
                         break;
                     case 4:
-                        if(!valid.checkRating()){break;}
+                        if(!valid.checkRating()){
+                            System.out.println("Option has been disabled by admin.");
+                            break;
+                        }
                         type = Rank.Ratings;
                         rank(type);
                         break;
