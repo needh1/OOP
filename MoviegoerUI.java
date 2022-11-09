@@ -165,9 +165,11 @@ public class MoviegoerUI
             }
         }
         else if (type == Rank.Ratings) {
+            ArrayList<Movie> lessThan2 = new ArrayList<Movie>();
             for (int i = 0; i < movieList.size(); i++) {
-                if (movieList.get(i).numReview() < 2) movieList.remove(i);
+                if (movieList.get(i).numReview() < 2) lessThan2.add(movieList.get(i));
             }
+            movieList.removeAll(lessThan2);
             Collections.sort(movieList, Movie.COMPARE_BY_RATINGS);
             Collections.reverse(movieList);
             for (int i = 0; i < Math.min(5, movieList.size()); i++) {
