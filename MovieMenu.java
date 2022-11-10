@@ -261,7 +261,7 @@ public class MovieMenu
                             switch(sc.nextInt()){
                                 case 1:
                                     purchase(showtimes, code, price1);
-                                    break;
+                                    return;
                                 case 2:
                                     return;
                                 default:
@@ -293,13 +293,13 @@ public class MovieMenu
                                     switch(sc.nextInt()){
                                         case 1:
                                             purchase(showtimes, code, price1);
-                                            break;
+                                            return;
                                         case 2:
                                             purchase(showtimes, code, price2);
-                                            break;
+                                            return;
                                         case 3:
                                             purchase(showtimes, code, price3);
-                                            break;
+                                            return;
                                         case 4:
                                             return;
                                         default:
@@ -329,13 +329,13 @@ public class MovieMenu
                                     switch(sc.nextInt()){
                                         case 1:
                                             purchase(showtimes, code, price1);
-                                            break;
+                                            return;
                                         case 2:
                                             purchase(showtimes, code, price2);
-                                            break;
+                                            return;
                                         case 3:
                                             purchase(showtimes, code, price3);
-                                            break;
+                                            return;
                                         case 4:
                                             return;
                                         default:
@@ -367,13 +367,13 @@ public class MovieMenu
                                     switch(sc.nextInt()){
                                         case 1:
                                             purchase(showtimes, code, price1);
-                                            break;
+                                            return;
                                         case 2:
                                             purchase(showtimes, code, price2);
-                                            break;
+                                            return;
                                         case 3:
                                             purchase(showtimes, code, price3);
-                                            break;
+                                            return;
                                         case 4:
                                             return;
                                         default:
@@ -403,13 +403,13 @@ public class MovieMenu
                                     switch(sc.nextInt()){
                                         case 1:
                                             purchase(showtimes, code, price1);
-                                            break;
+                                            return;
                                         case 2:
                                             purchase(showtimes, code, price2);
-                                            break;
+                                            return;
                                         case 3:
                                             purchase(showtimes, code, price3);
-                                            break;
+                                            return;
                                         case 4:
                                             return;
                                         default:
