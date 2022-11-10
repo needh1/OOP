@@ -31,6 +31,7 @@ public class MovieMenu
                         showtimes(movie).getSeating().printLayout();
                         break;
                     case 4:
+                        booking(showtimes(movie));
                         break;
                     case 5:
                         quit = true;
@@ -81,6 +82,8 @@ public class MovieMenu
         System.out.println();
         text = String.format("Movie title: %s", movie.getMovieTitle());
         System.out.println(text);
+        text = String.format("Movie rating: %s", movie.getMovieRating());
+        System.out.println(text);
         text = String.format("Showing status: %s", movie.getStatus());
         System.out.println(text);
         text = String.format("Sypnosis: %s", movie.getSynopsis());
@@ -89,14 +92,14 @@ public class MovieMenu
         System.out.println(text);
         text = String.format("Cast: %s", movie.getCast());
         System.out.println(text);
-        if (movie.numReview() > 1) text = String.format("Overall Rating: %,.1f", movie.avgRating());
+        if (movie.numReview() > 1) text = String.format("Overall Rating: %.1f", movie.avgRating());
         else text = "Overall Rating: NA";
         System.out.println(text);
     }
 
     private void viewReviews(Movie movie) {
         String text;
-        if (movie.numReview() > 1) text = String.format("\nOverall Rating: %,.1f", movie.avgRating());
+        if (movie.numReview() > 1) text = String.format("\nOverall Rating: %.1f", movie.avgRating());
         else text = "\nOverall Rating: NA";
         System.out.println(text);
         System.out.println("\n_____Reviews_____\n");
@@ -201,4 +204,248 @@ public class MovieMenu
             }   
         }
     }
+    
+    private void booking(Showing showtimes) {
+        HolidayStorage storage = new HolidayStorage();
+        ArrayList<Holiday> holidayList = storage.read();
+        MovieStorage storage2 = new MovieStorage();
+        ArrayList<Movie> movieList = storage2.read();
+        PriceStorage storage3 = new PriceStorage();
+        Price priceList = storage3.read();
+        showtimes.getSeating().printLayout();
+        while(true){
+            System.out.print("Choose seat to book (integers 'RowColumn'): ");
+            String text = sc.nextLine();
+            try{
+                int code = Integer.parseInt(text);
+                System.out.println("\n_____Cost of Ticket_____");
+                LocalDate date = showtimes.getDate();
+                boolean isHoliday = false;
+                MovieType movieType = null;
+                CinemaType cinemaType = showtimes.getSeating().getType();
+                for(Holiday holiday: holidayList){
+                    if(date == holiday.getHolidayDate()){
+                        isHoliday = true;
+                    }
+                }
+                for (Movie movie: movieList) {
+                    if (showtimes.getMovieTitle() == movie.getMovieTitle()) {
+                        movieType = movie.getType();
+                    }
+                }
+                System.out.println("Price of ticket:");
+                double price1, price2, price3;
+                if (isHoliday || date.getDayOfWeek().name() == "SATURDAY" || date.getDayOfWeek().name() == "SUNDAY") {
+                    if (movieType == MovieType._2D) {
+                        if (cinemaType == CinemaType.STANDARD) {
+                            price1 = priceList.getPrice(PricingType.WEEKEND_2D_STANDARD);
+                        }
+                        else {
+                            price1 = priceList.getPrice(PricingType.WEEKEND_2D_PREMIUM);
+                        }
+                    }
+                    else {
+                        if (cinemaType == CinemaType.STANDARD) {
+                            price1 = priceList.getPrice(PricingType.WEEKEND_3D_STANDARD);
+                        }
+                        else {
+                            price1 = priceList.getPrice(PricingType.WEEKEND_3D_PREMIUM);
+                        }
+                    }
+                    while (true) {
+                        text = String.format("1. All: $%.2f", price1);
+                        System.out.println(text);
+                        System.out.println("2. Return");
+                        System.out.print("\nEnter choice: ");
+                        if (sc.hasNextInt()) {
+                            switch(sc.nextInt()){
+                                case 1:
+                                    purchase(showtimes, code, price1);
+                                    break;
+                                case 2:
+                                    return;
+                                default:
+                                    System.out.println("Invalid choice!\n");
+                            }
+                        }
+                        else {
+                            System.out.println("Please enter an integer!\n");
+                            sc.nextLine();
+                        }
+                    }
+                }
+                else {
+                    if (movieType == MovieType._2D) {
+                        if (cinemaType == CinemaType.STANDARD) {
+                            while (true) {
+                                price1 = priceList.getPrice(PricingType.NORMAL_2D_STANDARD);
+                                text = String.format("1. Normal: $%.2f", price1);
+                                System.out.println(text);
+                                price2 = priceList.getPrice(PricingType.STUDENT_2D_STANDARD);
+                                text = String.format("2. Student: $%.2f", price2);
+                                System.out.println(text);
+                                price3 = priceList.getPrice(PricingType.SENIOR_2D_STANDARD);
+                                text = String.format("3. Senior: $%.2f", price3);
+                                System.out.println(text);
+                                System.out.println("4. Return");
+                                System.out.print("\nEnter choice: ");
+                                if (sc.hasNextInt()) {
+                                    switch(sc.nextInt()){
+                                        case 1:
+                                            purchase(showtimes, code, price1);
+                                            break;
+                                        case 2:
+                                            purchase(showtimes, code, price2);
+                                            break;
+                                        case 3:
+                                            purchase(showtimes, code, price3);
+                                            break;
+                                        case 4:
+                                            return;
+                                        default:
+                                            System.out.println("Invalid choice!\n");
+                                    }
+                                }
+                                else {
+                                    System.out.println("Please enter an integer!\n");
+                                    sc.nextLine();
+                                }
+                            }
+                        }
+                        else {
+                            while (true) {
+                                price1 = priceList.getPrice(PricingType.NORMAL_2D_PREMIUM);
+                                text = String.format("1. Normal: $%.2f", price1);
+                                System.out.println(text);
+                                price2 = priceList.getPrice(PricingType.STUDENT_2D_PREMIUM);
+                                text = String.format("2. Student: $%.2f", price2);
+                                System.out.println(text);
+                                price3 = priceList.getPrice(PricingType.SENIOR_2D_PREMIUM);
+                                text = String.format("3. Senior: $%.2f", price3);
+                                System.out.println(text);
+                                System.out.println("4. Return");
+                                System.out.print("\nEnter choice: ");
+                                if (sc.hasNextInt()) {
+                                    switch(sc.nextInt()){
+                                        case 1:
+                                            purchase(showtimes, code, price1);
+                                            break;
+                                        case 2:
+                                            purchase(showtimes, code, price2);
+                                            break;
+                                        case 3:
+                                            purchase(showtimes, code, price3);
+                                            break;
+                                        case 4:
+                                            return;
+                                        default:
+                                            System.out.println("Invalid choice!\n");
+                                    }
+                                }
+                                else {
+                                    System.out.println("Please enter an integer!\n");
+                                    sc.nextLine();
+                                }
+                            }
+                        }
+                    }
+                    else {
+                        if (cinemaType == CinemaType.STANDARD) {
+                            while (true) {
+                                price1 = priceList.getPrice(PricingType.NORMAL_3D_STANDARD);
+                                text = String.format("1. Normal: $%.2f", price1);
+                                System.out.println(text);
+                                price2 = priceList.getPrice(PricingType.STUDENT_3D_STANDARD);
+                                text = String.format("2. Student: $%.2f", price2);
+                                System.out.println(text);
+                                price3 = priceList.getPrice(PricingType.SENIOR_3D_STANDARD);
+                                text = String.format("3. Senior: $%.2f", price3);
+                                System.out.println(text);
+                                System.out.println("4. Return");
+                                System.out.print("\nEnter choice: ");
+                                if (sc.hasNextInt()) {
+                                    switch(sc.nextInt()){
+                                        case 1:
+                                            purchase(showtimes, code, price1);
+                                            break;
+                                        case 2:
+                                            purchase(showtimes, code, price2);
+                                            break;
+                                        case 3:
+                                            purchase(showtimes, code, price3);
+                                            break;
+                                        case 4:
+                                            return;
+                                        default:
+                                            System.out.println("Invalid choice!\n");
+                                    }
+                                }
+                                else {
+                                    System.out.println("Please enter an integer!\n");
+                                    sc.nextLine();
+                                }
+                            }
+                        }
+                        else {
+                            while (true) {
+                                price1 = priceList.getPrice(PricingType.NORMAL_3D_PREMIUM);
+                                text = String.format("1. Normal: $%.2f", price1);
+                                System.out.println(text);
+                                price2 = priceList.getPrice(PricingType.STUDENT_3D_PREMIUM);
+                                text = String.format("2. Student: $%.2f", price2);
+                                System.out.println(text);
+                                price3 = priceList.getPrice(PricingType.SENIOR_3D_PREMIUM);
+                                text = String.format("3. Senior: $%.2f", price3);
+                                System.out.println(text);
+                                System.out.println("4. Return");
+                                System.out.print("\nEnter choice: ");
+                                if (sc.hasNextInt()) {
+                                    switch(sc.nextInt()){
+                                        case 1:
+                                            purchase(showtimes, code, price1);
+                                            break;
+                                        case 2:
+                                            purchase(showtimes, code, price2);
+                                            break;
+                                        case 3:
+                                            purchase(showtimes, code, price3);
+                                            break;
+                                        case 4:
+                                            return;
+                                        default:
+                                            System.out.println("Invalid choice!\n");
+                                    }
+                                }
+                                else {
+                                    System.out.println("Please enter an integer!\n");
+                                    sc.nextLine();
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            catch (NumberFormatException ex){
+                System.out.println("Please enter an integer!\n");
+            }
+        }
+        
+    }
+
+    private void purchase(Showing showtimes, int code, double price) {
+        BookingStorage storage1 = new BookingStorage();
+        ArrayList<Booking> bookingList = storage1.read();
+        MovieStorage storage2 = new MovieStorage();
+        ArrayList<Movie> movieList = storage2.read();
+        //KEY IN AND RECORD NAME/PHONE NUMBER/EMAIL ADDRESS
+        //GET TRANSACTION ID
+        //STORE BOOKING
+        showtimes.getSeating().assignSeat(code);
+        for (Movie movie: movieList) {
+            if (showtimes.getMovieTitle() == movie.getMovieTitle()) {
+                movie.incTicketSales();
+            }
+        }
+    }
+
 }
