@@ -7,6 +7,7 @@ public class Movie implements Serializable
 	private String movieID;
 	private String movieTitle;
 	private MovieType type;
+	private String movieRating;
 	private double duration;
 	private String status;
 	private String synopsis;
@@ -19,6 +20,7 @@ public class Movie implements Serializable
 		this.movieID = "";
 		this.movieTitle = "";
 		this.type = MovieType._2D;
+		this.movieRating = "";
 		this.duration = 0;
 		this.status = "";
 		this.synopsis = "";
@@ -29,11 +31,12 @@ public class Movie implements Serializable
 
 	}
 
-	public Movie(String id, String title, MovieType type, double duration, String status, String synopsis, 
+	public Movie(String id, String title, MovieType type, String movieRating, double duration, String status, String synopsis, 
 			String director, String cast, int sales) {
 		this.movieID = id;
 		this.movieTitle = title;
 		this.type = type;
+		this.movieRating = movieRating;
 		this.duration = duration;
 		this.status = status;
 		this.synopsis = synopsis;
@@ -53,6 +56,10 @@ public class Movie implements Serializable
 
 	public MovieType getType() {
 		return type;
+	}
+
+	public String getMovieRating() {
+		return movieRating;
 	}
 
 	public double getDuration() {
@@ -93,6 +100,10 @@ public class Movie implements Serializable
 
 	public void setType(MovieType type) {
 		this.type = type;
+	}
+
+	public void setMovieRating(String movieRating) {
+		this.movieRating = movieRating;
 	}
 
 	public void setDuration(double duration) {
