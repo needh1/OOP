@@ -101,7 +101,10 @@ public class CURListing
         System.out.print("Enter movie cast: ");
         String cast = sc.nextLine();
 
-        Movie newMovie = new Movie(id, title, type, duration, status, synopsis, director, cast, 0);
+        System.out.print("Enter movie rating: ");
+        String rating = sc.nextLine();
+
+        Movie newMovie = new Movie(id, title, type, rating, duration, status, synopsis, director, cast, 0);
         storage.writeObject(newMovie);
     }
     /**
