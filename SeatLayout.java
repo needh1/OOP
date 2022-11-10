@@ -43,9 +43,9 @@ public class SeatLayout extends Cinema
 
     public void printLayout(){
         System.out.println("Seat Layout ([X] - Occupied, [O] - Available):");
-        for(int i = 0; i < getRow(); i++){
+        for(int i = 1; i <= getRow(); i++){
             System.out.print("|");
-            for(int j = 0; j < getColumn(); j++){
+            for(int j = 1; j <= getColumn(); j++){
                 if(seats[i][j].occupied()){System.out.print(seats[i][j].getSeatID() + "[X]|");}
                 else{System.out.print(seats[i][j].getSeatID() + "[O]|");}
             }
