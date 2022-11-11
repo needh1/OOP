@@ -25,6 +25,10 @@ public class Booking implements Serializable
      * Price of purchased ticket.
      */
     private double price;
+    /**
+     * Title of movie.
+     */
+    private String movieTitle;
 
     /**
      * Constructor for Booking object.
@@ -33,13 +37,15 @@ public class Booking implements Serializable
      * @param ticket_ID Movie-goer's transaction ID.
      * @param phone_num Movie-goer's phone number.
      * @param price Ticket price.
+     * @param movieTitle Movie title.
      */
-    public Booking(String name, String email, String TID, int phone_num, double price){
+    public Booking(String name, String email, String TID, int phone_num, double price, String movieTitle){
         this.name = name;
         this.email = email;
         this.TID = TID;
         this.phone_num = phone_num;
         this.price = price;
+        this.movieTitle = movieTitle;
     }
     /**
      * Gets movie-goer name.
@@ -77,6 +83,13 @@ public class Booking implements Serializable
         return price;
     }
     /**
+     * Gets movie title.
+     * @return Movie title.
+     */
+    public String getMovieTitle(){
+        return movieTitle;
+    }
+    /**
      * Sets movie-goer's name.
      * @param Name
      */
@@ -112,12 +125,20 @@ public class Booking implements Serializable
         price = Price;
     }
     /**
+     * Sets movie title.
+     * @param title
+     */
+    public void setMovieTitle(String title){
+        movieTitle = title;
+    }
+    /**
      * Displays booking information.
      */
     public void display(){
         System.out.println("x----.............Booking Details............----x");
 		System.out.println("|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|");
 		System.out.printf("|        Transaction ID: %-22s  |\n", getTID());
+        System.out.printf("|        Movie: %-32s |\n", getMovieTitle());
 		System.out.printf("|        Name: %-33s |\n", getName());
 		System.out.printf("|        Phone: %-32d |\n", getPhoneNum());
 		System.out.printf("|        Email: %-32s |\n", getEmail());
