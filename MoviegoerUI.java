@@ -101,7 +101,9 @@ public class MoviegoerUI
         ArrayList<Movie> movieList = storage.read();    
         String text = String.format("Enter movie %s: ", type.toString());
         System.out.print(text);
-        String input = sc.next();
+        sc.nextLine();
+        String input = sc.nextLine();
+        System.out.println(input);
         if (type == Search.ID) {
             for(Movie movie : movieList){
                 if(movie.getMovieID().equals(input)){
