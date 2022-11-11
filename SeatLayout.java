@@ -6,7 +6,7 @@ public class SeatLayout extends Cinema
     public SeatLayout(String code, CinemaType cinemaType, int row, int column){
         super(code, cinemaType, row, column);
         emptySeats = row * column;
-        seats = new Seat[row][column];
+        seats = new Seat[row + 1][column + 1];
         for(int i = 1; i <= row; i++){
             for(int j = 1; j <= column; j++){
                 String id = Integer.toString(i*10+j);
