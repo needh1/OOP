@@ -155,18 +155,19 @@ public class CURShowing
      */
     private void update(){
         ShowingStorage storage = new ShowingStorage();
-        System.out.print("Enter showing ID [");
         ArrayList<Showing> showingList = storage.read();
+        if(showingList.size() == 0){
+            System.out.println("There are no showings in the system.");
+            return;
+        }
+        System.out.print("Enter showing ID [");
         for(Showing showing : showingList){
             System.out.print(showing.getShowingID() + ", ");
         }
         System.out.print("]: ");
         String showingID = sc.next();
         
-        if(showingList.size() == 0){
-            System.out.println("Showing does not exist in system.");
-            return;
-        }
+        
         int index = 0;
         for(index = 0; index < showingList.size(); index++){
             if(showingList.get(index).getShowingID().equals(showingID)){
@@ -188,18 +189,20 @@ public class CURShowing
         if (sc.hasNextInt()) {
             switch(sc.nextInt()){
                 case 1:
-                    System.out.print("Enter new movie ID [");
+                    
                     MovieStorage movieStore = new MovieStorage();
                     ArrayList<Movie> movieList = movieStore.read();
+                    if(movieList.size() == 0){
+                        System.out.println("There are no movies in the system.");
+                        return;
+                    }
+                    System.out.print("Enter new movie ID [");
                     for(Movie movie : movieList){
                         System.out.print(movie.getMovieID() + ", ");
                     }
                     System.out.print("]: ");
                     String id = sc.next();
-                    if(movieList.size() == 0){
-                        System.out.println("Movie does not exist in system.");
-                        return;
-                    }
+                    
                     String movieName = "";
                     for(int i = 0; i < movieList.size(); i++){
                         if(movieList.get(i).getMovieID().equals(id)){
@@ -288,6 +291,10 @@ public class CURShowing
 
         ShowingStorage storage = new ShowingStorage();
         ArrayList<Showing> showingList = storage.read();
+        if(showingList.size() == 0){
+            System.out.println("There are no showings in th system.");
+            return;
+        }
         System.out.print("Enter showing ID to remove [");
         for(Showing showing : showingList){
             System.out.print(showing.getShowingID() + ", ");

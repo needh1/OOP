@@ -113,6 +113,10 @@ public class CURListing
     private void update(){
         MovieStorage storage = new MovieStorage();
         ArrayList<Movie> movieList = storage.read();
+        if(movieList.size() == 0){
+            System.out.println("There are no movies in the system.");
+            return;
+        }
         System.out.print("Enter movie ID to update [");
         for(Movie movie : movieList){
             System.out.print(movie.getMovieID() + ", ");
@@ -120,11 +124,6 @@ public class CURListing
         System.out.print("]: ");
         String id = sc.next();
 
-        
-        if(movieList.size() == 0){
-            System.out.println("Movie does not exist in system.");
-            return;
-        }
         for(int i = 0; i < movieList.size(); i++){
             if(movieList.get(i).getMovieID().equals(id)){
                 break;
@@ -246,6 +245,10 @@ public class CURListing
     private void remove(){
         MovieStorage storage = new MovieStorage();
         ArrayList<Movie> movieList = storage.read();
+        if(movieList.size() == 0){
+            System.out.println("There are no movies in the system.");
+            return;
+        }
         System.out.print("Enter movie ID to remove [");
         for(Movie movie : movieList){
             System.out.print(movie.getMovieID() + ", ");
