@@ -47,6 +47,7 @@ public class MoviegoerUI
                         rank(type);
                         break;
                     case 5:
+                        history();
                         break;
                     case 6:
                         quit = true;
@@ -184,4 +185,23 @@ public class MoviegoerUI
         }
         System.out.println();
     }
+    
+    private void history() {
+        BookingStorage storage = new BookingStorage();
+        ArrayList<Booking> bookingList = storage.read(); 
+        System.out.println("\n___Booking History___");
+        System.out.print("Name: ");
+        String name = sc.nextLine();
+        boolean empty = true;
+        for (Booking record : bookingList) {
+            if (record.getName() == name) {
+                record.display();
+                empty = false;
+            }
+        }
+        if (empty) {
+            System.out.println("\nBooking history not found!");
+        }
+    }
+
 }
