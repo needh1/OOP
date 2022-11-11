@@ -1,4 +1,5 @@
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -432,20 +433,40 @@ public class MovieMenu
         
     }
 
-    private void purchase(Showing showtimes, int code, double price) {
+    private void purchase(Showing showtimes, int seat, double price) {
         BookingStorage storage1 = new BookingStorage();
-        ArrayList<Booking> bookingList = storage1.read();
         MovieStorage storage2 = new MovieStorage();
         ArrayList<Movie> movieList = storage2.read();
-        //KEY IN AND RECORD NAME/PHONE NUMBER/EMAIL ADDRESS
-        //GET TRANSACTION ID
-        //STORE BOOKING
-        showtimes.getSeating().assignSeat(code);
+        System.out.println("\n____Ticket Purchase____");
+        System.out.print("Name: ");
+        String name = sc.nextLine();
+        System.out.print("\nEmail Address: ");
+        String email = sc.nextLine();
+        int number;
+        while (true) {
+            System.out.print("\nPhone Number: ");
+            if (sc.hasNextInt()) {
+                number = sc.nextInt();
+                break;
+            }
+            else {
+                System.out.println("Please enter an integer!\n");
+                sc.nextLine();
+            }
+        }
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyyMMddHHmm");
+        LocalDateTime now = LocalDateTime.now();  
+        String formatted = now.format(dtf);
+        String id = showtimes.getSeating().getCode() + formatted;  
+        Booking newBooking = new Booking(name, email, id, number, price);
+        storage1.writeObject(newBooking);     
+        showtimes.getSeating().assignSeat(seat);
         for (Movie movie: movieList) {
             if (showtimes.getMovieTitle() == movie.getMovieTitle()) {
                 movie.incTicketSales();
             }
         }
+        System.out.println("Booking and purchase is successful!");
     }
 
 }
