@@ -14,9 +14,9 @@ public class Booking implements Serializable
      */
     private String email;
     /**
-     * Ticket ID of movie-goer.
+     * Transaction ID of movie-goer.
      */
-    private String ticket_ID;
+    private String TID;
     /**
      * Phone number of movie-goer.
      */
@@ -30,14 +30,14 @@ public class Booking implements Serializable
      * Constructor for Booking object.
      * @param name Movie-goer's name.
      * @param email Movie-goer's email
-     * @param ticket_ID Movie-goer's ticket ID.
+     * @param ticket_ID Movie-goer's transaction ID.
      * @param phone_num Movie-goer's phone number.
      * @param price Ticket price.
      */
-    public Booking(String name, String email, String ticket_ID, int phone_num, double price){
+    public Booking(String name, String email, String TID, int phone_num, double price){
         this.name = name;
         this.email = email;
-        this.ticket_ID = ticket_ID;
+        this.TID = TID;
         this.phone_num = phone_num;
         this.price = price;
     }
@@ -56,11 +56,11 @@ public class Booking implements Serializable
         return email;
     }
     /**
-     * Gets ticket ID.
-     * @return ticket ID.
+     * Gets transaction ID.
+     * @return transaction ID.
      */
-    public String getTicketID(){
-        return ticket_ID;
+    public String getTID(){
+        return TID;
     }
     /**
      * Gets movie-goer phone number.
@@ -91,11 +91,11 @@ public class Booking implements Serializable
         email = Email;
     }
     /**
-     * Sets ticket ID.
-     * @param TicketID
+     * Sets transaction ID.
+     * @param TransactionID
      */
-    public void setTicketNum(String TicketID){
-        ticket_ID = TicketID;
+    public void setTID(String TransactionID){
+        TID = TransactionID;
     }
     /**
      * Sets movie-goer's phone number.
@@ -117,7 +117,7 @@ public class Booking implements Serializable
     public void display(){
         System.out.println("x----.............Booking Details............----x");
 		System.out.println("|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|");
-		System.out.printf("|        Transaction ID: %-22s  |\n", getTicketID());
+		System.out.printf("|        Transaction ID: %-22s  |\n", getTID());
 		System.out.printf("|        Name: %-33s |\n", getName());
 		System.out.printf("|        Phone: %-32d |\n", getPhoneNum());
 		System.out.printf("|        Email: %-32s |\n", getEmail());
