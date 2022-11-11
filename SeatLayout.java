@@ -24,6 +24,10 @@ public class SeatLayout extends Cinema
         return emptySeats;
     }
 
+    public Seat getSeat(int seatNum){
+        return seats[seatNum/10][seatNum%10];
+    }
+
     public void assignSeat(int seatNum){
         if(!seats[seatNum/10][seatNum%10].occupied()){
             seats[seatNum/10][seatNum%10].assignSeat();

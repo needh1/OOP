@@ -221,16 +221,20 @@ public class MovieMenu
         PriceStorage storage3 = new PriceStorage();
         Price priceList = storage3.read();
         showtimes.getSeating().printLayout();
+        sc.nextLine();
         while(true){
             System.out.print("Choose seat to book (integers 'RowColumn'): ");
-            sc.nextLine();
             String text = sc.nextLine();
 
             try{
                 int code = Integer.parseInt(text);
                 if(code/10 > showtimes.getSeating().getRow() || code%10 > showtimes.getSeating().getColumn()){
                     System.out.println("Invalid seat number!");
-                    break;
+                    continue;
+                }
+                if(showtimes.getSeating().getSeat(code).occupied()){
+                    System.out.println("Seat is occupied.");
+                    continue;
                 }
                 System.out.println("\n_____Cost of Ticket_____");
                 LocalDate date = showtimes.getDate();
@@ -449,6 +453,8 @@ public class MovieMenu
     private void purchase(Showing showtimes, int seat, double price) {
         BookingStorage storage1 = new BookingStorage();
         MovieStorage storage2 = new MovieStorage();
+        ShowingStorage storage3 = new ShowingStorage();
+        ArrayList<Showing> showingList = storage3.read();
         ArrayList<Movie> movieList = storage2.read();
         System.out.println("\n____Ticket Purchase____");
         System.out.print("Name: ");
@@ -480,6 +486,13 @@ public class MovieMenu
                 movie.incTicketSales();
             }
         }
+        for(int i = 0; i < showingList.size(); i++){
+            if(showingList.get(i).getShowingID().equals(showtimes.getShowingID())){
+                showingList.set(i, showtimes);
+                break;
+            }
+        }
+        storage3.replaceExistingFile(showingList);;
         System.out.println("Booking and purchase is successful!");
     }
 
