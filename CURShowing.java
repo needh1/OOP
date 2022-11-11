@@ -61,10 +61,15 @@ public class CURShowing
             }
         }
 
-        System.out.println("Enter movieID for new showing:");
-        String id = sc.next();
+        System.out.print("Enter movieID for new showing [");
         MovieStorage storage = new MovieStorage();
         ArrayList<Movie> movieList = storage.read();
+        for(Movie movie : movieList){
+            System.out.print(movie.getMovieID() + ", ");
+        }
+        System.out.print("]: ");
+        String id = sc.next();
+        
         if(movieList.size() == 0){
             System.out.println("Movie does not exist in system.");
             return;
@@ -82,10 +87,15 @@ public class CURShowing
         }
 
         sc.nextLine();
-        System.out.print("Enter cineplex name: ");
-        String cineplexName = sc.nextLine();
+        System.out.print("Enter cineplex name [");
         CineplexStorage cineplexStore = new CineplexStorage();
         ArrayList<Cineplex> cineplexList = cineplexStore.read();
+        for(Cineplex cineplex : cineplexList){
+            System.out.print(cineplex.getName() + ", ");
+        }
+        System.out.print("]: ");
+        String cineplexName = sc.nextLine();
+        
         if(cineplexList.size() == 0){
             System.out.println("Cineplex does not exist in system.");
             return;
@@ -102,7 +112,11 @@ public class CURShowing
             }
         }
 
-        System.out.print("Enter cinemaCode: ");
+        System.out.print("Enter cinemaCode [");
+        for(Cinema cinema : cineplexList.get(cineplexIndex).getCinemaList()){
+            System.out.print(cinema.getCode() + ", ");
+        }
+        System.out.print("]: ");
         String cinemaCode = sc.next();
         Cinema cinema = cineplexList.get(cineplexIndex).getCinema(cinemaCode);
         if(cinema == null){
@@ -141,9 +155,14 @@ public class CURShowing
      */
     private void update(){
         ShowingStorage storage = new ShowingStorage();
-        System.out.println("Enter showing ID: ");
-        String showingID = sc.next();
+        System.out.print("Enter showing ID [");
         ArrayList<Showing> showingList = storage.read();
+        for(Showing showing : showingList){
+            System.out.print(showing.getShowingID() + ", ");
+        }
+        System.out.print("]: ");
+        String showingID = sc.next();
+        
         if(showingList.size() == 0){
             System.out.println("Showing does not exist in system.");
             return;
@@ -154,7 +173,7 @@ public class CURShowing
                 break;
             }
             if(index == showingList.size() - 1){
-                System.out.println("Movie does not exist in system.");
+                System.out.println("Showing does not exist in system.");
                 return;
             }
         }
@@ -169,10 +188,14 @@ public class CURShowing
         if (sc.hasNextInt()) {
             switch(sc.nextInt()){
                 case 1:
-                    System.out.println("Enter new movie ID: ");
-                    String id = sc.next();
+                    System.out.print("Enter new movie ID [");
                     MovieStorage movieStore = new MovieStorage();
                     ArrayList<Movie> movieList = movieStore.read();
+                    for(Movie movie : movieList){
+                        System.out.print(movie.getMovieID() + ", ");
+                    }
+                    System.out.print("]: ");
+                    String id = sc.next();
                     if(movieList.size() == 0){
                         System.out.println("Movie does not exist in system.");
                         return;
@@ -191,8 +214,6 @@ public class CURShowing
                     showingList.get(index).setMovieTitle(movieName);
                     break;
                 case 2:
-                    System.out.print("Enter new cinema code: ");
-                    String cinemaCode = sc.next();
                     CineplexStorage cineplexStorage = new CineplexStorage();
                     ArrayList<Cineplex> cineplexList = cineplexStorage.read();
                     int cineplexIndex = 0;
@@ -206,6 +227,12 @@ public class CURShowing
                             return;
                         }
                     }
+                    System.out.print("Enter new cinema code [");
+                    for(Cinema cinema : cineplexList.get(cineplexIndex).getCinemaList()){
+                        System.out.print(cinema.getCode() + ", ");
+                    }
+                    System.out.print("]: ");
+                    String cinemaCode = sc.next();
                     Cinema cinema = cineplexList.get(cineplexIndex).getCinema(cinemaCode);
                     if(cinema == null){
                         System.out.println("Cinema does not exist!");
@@ -257,11 +284,16 @@ public class CURShowing
      * Removes an existing movie showing.
      */
     private void remove(){
-        System.out.print("Enter showing ID to remove: ");
-        String id = sc.next();
+        
 
         ShowingStorage storage = new ShowingStorage();
         ArrayList<Showing> showingList = storage.read();
+        System.out.print("Enter showing ID to remove [");
+        for(Showing showing : showingList){
+            System.out.print(showing.getShowingID() + ", ");
+        }
+        System.out.print("]: ");
+        String id = sc.next();
         for(int i = 0; i < showingList.size(); i++){
             if(showingList.get(i).getShowingID().equals(id)){
                 showingList.remove(i);
