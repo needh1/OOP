@@ -193,10 +193,11 @@ public class MoviegoerUI
         ArrayList<Booking> bookingList = storage.read(); 
         System.out.println("\n___Booking History___");
         System.out.print("Name: ");
+        sc.nextLine();
         String name = sc.nextLine();
         boolean empty = true;
         for (Booking record : bookingList) {
-            if (record.getName() == name) {
+            if (record.getName().equals(name)) {
                 record.display();
                 empty = false;
             }

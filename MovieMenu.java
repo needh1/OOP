@@ -33,11 +33,12 @@ public class MovieMenu
                         if(showTime != null){
                             showTime.getSeating().printLayout();
                         }
+                        sc.nextLine();
                         break;
                     case 4:
-                        showTime = showtimes(movie);
-                        if(showTime != null){
-                            booking(showtimes(movie));
+                        Showing showBooking = showtimes(movie);
+                        if(showBooking != null){
+                            booking(showBooking);
                         }
                         break;
                     case 5:
@@ -144,12 +145,12 @@ public class MovieMenu
     private Showing showtimes(Movie movie) {
         ShowingStorage storage = new ShowingStorage();
         ArrayList<Showing> showingList = storage.read();
-        ArrayList<Showing> movieShowing = new ArrayList<>();
+        ArrayList<Showing> movieShowing = new ArrayList<Showing>();
         ArrayList<LocalDate> dateShowing = new ArrayList<>();
         ArrayList<Showing> timeShowing = new ArrayList<>();
         showingList.sort(Comparator.comparing(Showing::getDate));
         for (Showing show : showingList){
-            if (movie.getMovieTitle() == show.getMovieTitle()) movieShowing.add(show);
+            if (movie.getMovieTitle().equals(show.getMovieTitle())) movieShowing.add(show);
         }
         for (Showing show : movieShowing){
             if (dateShowing.contains(show.getDate()) == false) dateShowing.add(show.getDate());
@@ -222,9 +223,15 @@ public class MovieMenu
         showtimes.getSeating().printLayout();
         while(true){
             System.out.print("Choose seat to book (integers 'RowColumn'): ");
+            sc.nextLine();
             String text = sc.nextLine();
+
             try{
                 int code = Integer.parseInt(text);
+                if(code/10 > showtimes.getSeating().getRow() || code%10 > showtimes.getSeating().getColumn()){
+                    System.out.println("Invalid seat number!");
+                    break;
+                }
                 System.out.println("\n_____Cost of Ticket_____");
                 LocalDate date = showtimes.getDate();
                 boolean isHoliday = false;
@@ -260,7 +267,7 @@ public class MovieMenu
                         }
                     }
                     while (true) {
-                        text = String.format("1. All: $%.2f", price1);
+                        text = String.format("1. Weekend/Holiday: $%.2f", price1);
                         System.out.println(text);
                         System.out.println("2. Return");
                         System.out.print("\nEnter choice: ");
@@ -445,6 +452,7 @@ public class MovieMenu
         ArrayList<Movie> movieList = storage2.read();
         System.out.println("\n____Ticket Purchase____");
         System.out.print("Name: ");
+        sc.nextLine();
         String name = sc.nextLine();
         System.out.print("\nEmail Address: ");
         String email = sc.nextLine();
