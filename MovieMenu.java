@@ -29,10 +29,16 @@ public class MovieMenu
                         review(movie);
                         break;
                     case 3:
-                        showtimes(movie).getSeating().printLayout();
+                        Showing showTime = showtimes(movie);
+                        if(showTime != null){
+                            showTime.getSeating().printLayout();
+                        }
                         break;
                     case 4:
-                        booking(showtimes(movie));
+                        showTime = showtimes(movie);
+                        if(showTime != null){
+                            booking(showtimes(movie));
+                        }
                         break;
                     case 5:
                         quit = true;
