@@ -1,21 +1,59 @@
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Comparator;
-
+/**
+ * Represents movie object.
+ * Contains information such as details, reviews and ticket sales for the movie. 
+ */
 public class Movie implements Serializable
 {	
+	/**
+	 * ID of movie.
+	 */
 	private String movieID;
+	/**
+	 * Title of movie.
+	 */
 	private String movieTitle;
+	/**
+	 * Type of movie.
+	 */
 	private MovieType type;
+	/**
+	 * Rating of movie.
+	 */
 	private String movieRating;
+	/**
+	 * Duration of movie.
+	 */
 	private double duration;
+	/**
+	 * Showing status of movie.
+	 */
 	private String status;
+	/**
+	 * Synopsis of movie.
+	 */
 	private String synopsis;
+	/**
+	 * Director of movie.
+	 */
 	private String director;
+	/**
+	 * Cast of movie.
+	 */
 	private String cast;
+	/**
+	 * Ticket sales of movie.
+	 */
 	private int ticketSales;
+	/**
+	 * List of reviews for movie.
+	 */
 	private ArrayList<Review> reviewList;
-	
+	/**
+	 * Constructor for Movie object.
+	 */
 	public Movie() {
 		this.movieID = "";
 		this.movieTitle = "";
@@ -30,7 +68,19 @@ public class Movie implements Serializable
 		this.reviewList = new ArrayList<>();
 
 	}
-
+	/**
+	 * Constructor for Movie object.
+	 * @param id Movie ID.
+	 * @param title Movie title.
+	 * @param type Movie type.
+	 * @param movieRating Movie rating.
+	 * @param duration Movie duration.
+	 * @param status Showing status of movie.
+	 * @param synopsis Movie synopsis.
+	 * @param director Movie's director.
+	 * @param cast Movie's cast.
+	 * @param sales Movie's ticket sales.
+	 */
 	public Movie(String id, String title, MovieType type, String movieRating, double duration, String status, String synopsis, 
 			String director, String cast, int sales) {
 		this.movieID = id;
@@ -45,118 +95,197 @@ public class Movie implements Serializable
 		this.ticketSales = sales;
 		this.reviewList = new ArrayList<>();
 	}
-
-	public String getMovieID() {
+	/**
+	 * Retrieves movie ID.
+	 * @return Movie ID.
+	 */
+	public String getMovieID(){
 		return movieID;
 	}
-
-	public String getMovieTitle() {
+	/**
+	 * Retrieves movie title.
+	 * @return Movie title.
+	 */
+	public String getMovieTitle(){
 		return movieTitle;
 	}
-
-	public MovieType getType() {
+	/**
+	 * Retrieves movie type.
+	 * @return Movie type.
+	 */
+	public MovieType getType(){
 		return type;
 	}
-
-	public String getMovieRating() {
+	/**
+	 * Retrieves movie rating.
+	 * @return Movie rating.
+	 */
+	public String getMovieRating(){
 		return movieRating;
 	}
-
-	public double getDuration() {
+	/**
+	 * Retrieves movie duration.
+	 * @return Movie duration.
+	 */
+	public double getDuration(){
 		return duration;
 	}
-
-	public String getStatus() {
+	/**
+	 * Retrieves movie showing status.
+	 * @return Movie showing status.
+	 */
+	public String getStatus(){
 		return status;
 	}
-
-	public String getSynopsis() {
+	/**
+	 * Retrieves movie synopsis.
+	 * @return Movie synopsis.
+	 */
+	public String getSynopsis(){
 		return synopsis;
 	}
-
-	public String getDirector() {
+	/**
+	 * Retrieves movie director.
+	 * @return Movie director.
+	 */
+	public String getDirector(){
 		return director;
 	}
-
-	public String getCast() {
+	/**
+	 * Retrieves movie cast.
+	 * @return Movie cast.
+	 */
+	public String getCast(){
 		return cast;
 	}
-
-	public int getTicketSales() {
+	/**
+	 * Retrieves movie ticket sales.
+	 * @return Movie ticket sales.
+	 */
+	public int getTicketSales(){
 		return ticketSales;
 	}
-	
-	public ArrayList<Review> getReviewList() {
+	/**
+	 * Retrieves review list of movie.
+	 * @return Review list of movie.
+	 */
+	public ArrayList<Review> getReviewList(){
 		return reviewList;
 	}
-	
-	public void setMovieID(String id) {
+	/**
+	 * Sets movie ID.
+	 * @param id Movie ID.
+	 */
+	public void setMovieID(String id){
 		this.movieID = id;
 	}
-	
-	public void setMovietitle(String title) {
+	/**
+	 * Sets movie title.
+	 * @param title Movie title.
+	 */
+	public void setMovietitle(String title){
 		this.movieTitle = title;
 	}
-
-	public void setType(MovieType type) {
+	/**
+	 * Sets movie type.
+	 * @param type Movie type.
+	 */
+	public void setType(MovieType type){
 		this.type = type;
 	}
-
-	public void setMovieRating(String movieRating) {
+	/**
+	 * Sets movie rating.
+	 * @param movieRating Movie rating.
+	 */
+	public void setMovieRating(String movieRating){
 		this.movieRating = movieRating;
 	}
-
-	public void setDuration(double duration) {
+	/**
+	 * Sets movie duration
+	 * @param duration Movie duration.
+	 */
+	public void setDuration(double duration){
 		this.duration = duration;
 	}
-
-	public void setStatus(String status) {
+	/**
+	 * Sets movie status.
+	 * @param status Movie status.
+	 */
+	public void setStatus(String status){
 		this.status = status;
 	}
-
-	public void setSynopsis(String synopsis) {
+	/**
+	 * Sets movie synopsis.
+	 * @param synopsis Movie synopsis.
+	 */
+	public void setSynopsis(String synopsis){
 		this.synopsis = synopsis;
 	}
-
-	public void setDirector(String director) {
+	/**
+	 * Sets movie director.
+	 * @param director Movie director.
+	 */
+	public void setDirector(String director){
 		this.director = director;
 	}
-
-	public void setCast(String cast) {
+	/**
+	 * Sets movie cast.
+	 * @param cast Movie cast.
+	 */
+	public void setCast(String cast){
 		this.cast = cast;
 	}
-
-	public void setTicketSales(int sales) {
+	/**
+	 * Sets movie ticket sales.
+	 * @param sales Movie ticket sales.
+	 */
+	public void setTicketSales(int sales){
 		this.ticketSales = sales;
 	}
-
-	public void incTicketSales() {
+	/**
+	 * Increase movie ticket sales.
+	 */
+	public void incTicketSales(){
 		this.ticketSales++;
 	}
-
-	public void addReview(int rating, String content) {
+	/**
+	 * Adds review of movie.
+	 * @param rating Review rating.
+	 * @param content Review content.
+	 */
+	public void addReview(int rating, String content){
 		Review newReview = new Review(rating, content);
 		reviewList.add(newReview);
 	}
-	
-	public int numReview() {
+	/**
+	 * Retrieves number of reviews.
+	 * @return Number of reviews.
+	 */
+	public int numReview(){
 		return reviewList.size();
 	}
-	
-	public double avgRating() {
+	/**
+	 * Calculates average rating of reviews.
+	 * @return Average rating of reviews.
+	 */
+	public double avgRating(){
 		int total = 0;
 		for(Review r : reviewList)
 		    total += r.getReviewRating();
 		return total / numReview();
 	}
-	
-	public static Comparator<Movie> COMPARE_BY_SALES = new Comparator<Movie>() {
+	/**
+	 * Sorts movies by ticket sales.
+	 */
+	public static Comparator<Movie> COMPARE_BY_SALES = new Comparator<Movie>(){
         public int compare(Movie one, Movie other) {
             return Integer.compare(one.ticketSales, other.ticketSales);
         }
     };
-
-    public static Comparator<Movie> COMPARE_BY_RATINGS = new Comparator<Movie>() {
+	/**
+	 * Sorts movies by average review ratings.
+	 */
+    public static Comparator<Movie> COMPARE_BY_RATINGS = new Comparator<Movie>(){
         public int compare(Movie one, Movie other) {
             return Double.compare(one.avgRating(), other.avgRating());
         }
