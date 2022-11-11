@@ -184,6 +184,7 @@ public class CURShowing
 							"2. Cinema number\n"+
 							"3. Date\n"+
 							"4. Time \n" +
+                            "5. Return\n"+
 							"Enter option: ");
         
         if (sc.hasNextInt()) {
@@ -270,6 +271,8 @@ public class CURShowing
                     }
                     showingList.get(index).setTime(time);
                     break;
+                case 5:
+                    return;
                 default:
                     System.out.println("Invalid choice!\n");
                     return;

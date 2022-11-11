@@ -142,7 +142,8 @@ public class CURListing
 							"5. Synopsis \n" +
 							"6. Director\n"+
 							"7. Cast\n"+
-                            "8. Movie Rating\n\n"+
+                            "8. Movie Rating\n"+
+                            "9. Return\n\n"+
 							"Enter option: ");
         
         if (sc.hasNextInt()) {
@@ -226,6 +227,8 @@ public class CURListing
                     String newMovieRating = sc.nextLine();
                     movieList.get(getIndex(movieList, id)).setMovieRating(newMovieRating);
                     break;
+                case 9:
+                    return;
                 default:
                     System.out.println("Invalid choice!\n");
                     return;
