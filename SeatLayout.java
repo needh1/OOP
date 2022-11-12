@@ -89,6 +89,15 @@ public class SeatLayout extends Cinema
             }
             System.out.print("\n");
         }
-        System.out.println();
+        String screen = "";
+        for(int i = 0; i < getColumn()-1; i++){
+            if(i == getColumn()/2-1){
+                screen = screen.concat("SCREEN");
+            }
+            else{
+                screen = screen.concat("_______");
+            }
+        }
+        System.out.println("|" + screen + "|");
     }
 }
