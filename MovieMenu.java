@@ -478,7 +478,7 @@ public class MovieMenu
         LocalDateTime now = LocalDateTime.now();  
         String formatted = now.format(dtf);
         String id = showtimes.getSeating().getCode() + formatted;  
-        Booking newBooking = new Booking(name, email, id, number, price, showtimes.getMovieTitle());
+        Booking newBooking = new Booking(name, email, id, number, price, showtimes, seat);
         storage1.writeObject(newBooking);     
         showtimes.getSeating().assignSeat(seat);
         for (Movie movie: movieList) {

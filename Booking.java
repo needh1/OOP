@@ -28,7 +28,11 @@ public class Booking implements Serializable
     /**
      * Title of movie.
      */
-    private String movieTitle;
+    private Showing showDetails;
+    /**
+     * Seat number of ticket holder
+     */
+    private int seatNo;
 
     /**
      * Constructor for Booking object.
@@ -37,15 +41,17 @@ public class Booking implements Serializable
      * @param ticket_ID Movie-goer's transaction ID.
      * @param phone_num Movie-goer's phone number.
      * @param price Ticket price.
-     * @param movieTitle Movie title.
+     * @param showDetails Showing details.
+     * @param seatNo Seat number of ticket holder.
      */
-    public Booking(String name, String email, String TID, int phone_num, double price, String movieTitle){
+    public Booking(String name, String email, String TID, int phone_num, double price, Showing showDetails, int seatNo){
         this.name = name;
         this.email = email;
         this.TID = TID;
         this.phone_num = phone_num;
         this.price = price;
-        this.movieTitle = movieTitle;
+        this.showDetails = showDetails;
+        this.seatNo = seatNo;
     }
     /**
      * Gets movie-goer name.
@@ -87,7 +93,7 @@ public class Booking implements Serializable
      * @return Movie title.
      */
     public String getMovieTitle(){
-        return movieTitle;
+        return showDetails.getMovieTitle();
     }
     /**
      * Sets movie-goer's name.
@@ -129,7 +135,21 @@ public class Booking implements Serializable
      * @param title
      */
     public void setMovieTitle(String title){
-        movieTitle = title;
+        showDetails.setMovieTitle(title);
+    }
+    /**
+     * Retrieves seat number of booking.
+     * @return Seat number.
+     */
+    public int getSeatNo(){
+        return seatNo;
+    }
+    /**
+     * Sets seat number.
+     * @param seatNo
+     */
+    public void setSeatNo(int seatNo){
+        this.seatNo = seatNo;
     }
     /**
      * Displays booking information.
@@ -139,6 +159,9 @@ public class Booking implements Serializable
 		System.out.println("|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|");
 		System.out.printf("|        Transaction ID: %-22s  |\n", getTID());
         System.out.printf("|        Movie: %-32s |\n", getMovieTitle());
+        System.out.printf("|        Cineplex: %-29s |\n", showDetails.getCineplexName());
+        System.out.printf("|        Cinema: %-31s |\n", showDetails.getSeating().getCode());
+        System.out.printf("|        Seat number: %-26d |\n", getSeatNo());
 		System.out.printf("|        Name: %-33s |\n", getName());
 		System.out.printf("|        Phone: %-32d |\n", getPhoneNum());
 		System.out.printf("|        Email: %-32s |\n", getEmail());
