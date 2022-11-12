@@ -88,10 +88,28 @@ public class CURListing
         }
         double duration = sc.nextDouble();
 
-        sc.nextLine();
-        System.out.print("Enter movie status(Coming Soon/Now Showing): ");
-        String status = sc.nextLine();
+        System.out.print("Select movie status:\n1. Coming Soon\n2. Now Showing\nChoice: ");
+        String newStatus = "";
+        if (sc.hasNextInt()) {
+            switch(sc.nextInt()){
+                case 1:
+                    newStatus = "Coming Soon";
+                    break;
+                case 2:
+                    newStatus = "Now Showing";
+                    break;
+                default:
+                    System.out.println("Invalid choice!\n");
+                    return;
+            }
+        }
+        else {
+            System.out.println("Invalid input!\n");
+            sc.nextLine();
+            return;
+        }
 
+        sc.nextLine();
         System.out.println("Enter movie synopsis: ");
         String synopsis = sc.nextLine();
 
@@ -104,7 +122,7 @@ public class CURListing
         System.out.print("Enter movie rating: ");
         String rating = sc.nextLine();
 
-        Movie newMovie = new Movie(id, title, type, rating, duration, status, synopsis, director, cast, 0);
+        Movie newMovie = new Movie(id, title, type, rating, duration, newStatus, synopsis, director, cast, 0);
         storage.writeObject(newMovie);
     }
     /**
@@ -188,20 +206,34 @@ public class CURListing
                     movieList.get(getIndex(movieList, id)).setDuration(newDuration);
                     break;
                 case 4:
-                    System.out.print("Enter new status (Now Showing/End of Showing): ");
-                    sc.nextLine();
-                    String newStatus = sc.nextLine();
-                    if(newStatus.equals("End of Showing")){
-                        for(int i = 0; i < movieList.size(); i++){
-                            if(movieList.get(i).getMovieID().equals(id)){
-                                movieList.remove(i);
-                                storage.replaceExistingFile(movieList);
-                                System.out.println("Movie successfully removed!");
+                    System.out.print("Select option:\n1. Now Showing\n2. End of Showing\nChoice: ");
+                    String newStatus;
+                    if (sc.hasNextInt()) {
+                        switch(sc.nextInt()){
+                            case 1:
+                                newStatus = "Now Showing";
+                                movieList.get(getIndex(movieList, id)).setStatus(newStatus);
+                                break;
+                            case 2:
+                                for(int i = 0; i < movieList.size(); i++){
+                                    if(movieList.get(i).getMovieID().equals(id)){
+                                        movieList.remove(i);
+                                        storage.replaceExistingFile(movieList);
+                                        System.out.println("Movie successfully removed!");
+                                        return;
+                                    }
+                                }
+                                break;
+                            default:
+                                System.out.println("Invalid choice!\n");
                                 return;
-                            }
                         }
                     }
-                    movieList.get(getIndex(movieList, id)).setMovietitle(newStatus);
+                    else {
+                        System.out.println("Invalid input!\n");
+                        sc.nextLine();
+                        return;
+                    }
                     break;
                 case 5:
                     System.out.print("Enter new synopsis: ");

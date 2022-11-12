@@ -65,7 +65,9 @@ public class CURShowing
         MovieStorage storage = new MovieStorage();
         ArrayList<Movie> movieList = storage.read();
         for(Movie movie : movieList){
-            System.out.print(movie.getMovieID() + ", ");
+            if(movie.getStatus().equals("Now Showing")){
+                System.out.print(movie.getMovieID() + ", ");
+            }
         }
         System.out.print("]: ");
         String id = sc.next();
@@ -77,6 +79,10 @@ public class CURShowing
         String movieName = "";
         for(int i = 0; i < movieList.size(); i++){
             if(movieList.get(i).getMovieID().equals(id)){
+                if(movieList.get(i).getStatus().equals("Coming Soon")){
+                    System.out.println("Movie is not available currently.");
+                    return;
+                }
                 movieName = movieList.get(i).getMovieTitle();
                 break;
             }
@@ -199,7 +205,9 @@ public class CURShowing
                     }
                     System.out.print("Enter new movie ID [");
                     for(Movie movie : movieList){
-                        System.out.print(movie.getMovieID() + ", ");
+                        if(movie.getStatus().equals("Now Showing")){
+                            System.out.print(movie.getMovieID() + ", ");
+                        }
                     }
                     System.out.print("]: ");
                     String id = sc.next();
@@ -207,6 +215,10 @@ public class CURShowing
                     String movieName = "";
                     for(int i = 0; i < movieList.size(); i++){
                         if(movieList.get(i).getMovieID().equals(id)){
+                            if(movieList.get(i).getStatus().equals("Coming Soon")){
+                                System.out.println("Movie is not available currently.");
+                                return;
+                            }
                             movieName = movieList.get(i).getMovieTitle();
                             break;
                         }

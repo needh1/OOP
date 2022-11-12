@@ -186,7 +186,7 @@ public class MovieMenu
                 LocalDate date = dateShowing.get(choice-1);
                 timeShowing = new ArrayList<>();
                 for (Showing show : movieShowing){
-                    if (show.getDate() == date) timeShowing.add(show);
+                    if (show.getDate().isEqual(date)) timeShowing.add(show);
                 }
                 timeShowing.sort(Comparator.comparing(Showing::getTime));
                 boolean quit = false;
