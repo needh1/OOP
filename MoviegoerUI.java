@@ -163,7 +163,7 @@ public class MoviegoerUI
             Collections.sort(movieList, Movie.COMPARE_BY_SALES);
             Collections.reverse(movieList);
             for (int i = 0; i < Math.min(5, movieList.size()); i++) {
-                String top = String.format("\n%d. %s\t\t\t %d", i+1, movieList.get(i).getMovieTitle(), movieList.get(i).getTicketSales());
+                String top = String.format("\n%d. %-15s %d", i+1, movieList.get(i).getMovieTitle(), movieList.get(i).getTicketSales());
                 System.out.print(top);
             }
         }
@@ -180,7 +180,7 @@ public class MoviegoerUI
             }
             else{
                 for (int i = 0; i < Math.min(5, movieList.size()); i++) {
-                    String top = String.format("\n%d. %s\t\t\t %,.1f", i+1, movieList.get(i).getMovieTitle(), movieList.get(i).avgRating());
+                    String top = String.format("\n%d. %-15s %,.1f", i+1, movieList.get(i).getMovieTitle(), movieList.get(i).avgRating());
                     System.out.print(top);
                 }
             }
