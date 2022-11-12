@@ -1,6 +1,7 @@
 import java.util.Scanner;
-
-
+/**
+ * Main user interface for MOBLIMA
+ */
 public class MainUI
 {
     Scanner sc = new Scanner(System.in);
@@ -38,7 +39,9 @@ public class MainUI
             }
         }
     }
-
+    /**
+     * Initialise key storage classes.
+     */
     private static void initializeSystem(){
         PriceStorage priceStore = new PriceStorage();
         if(priceStore.read().getSize() == 0){

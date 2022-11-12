@@ -4,11 +4,16 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.Scanner;
-
+/**
+ * Menu for movie-goers after movie selection.
+ */
 public class MovieMenu 
 {
     Scanner sc = new Scanner(System.in);
-
+    /**
+     * Method for movie menu.
+     * @param movie Selected movie.
+     */
     public void main(Movie movie) {
         boolean quit = false;
         while(!quit){
@@ -54,7 +59,10 @@ public class MovieMenu
             }
         }
     }
-
+    /**
+     * Access review menu for selected movie.
+     * @param movie Selected movie.
+     */
     private void review(Movie movie) {
         boolean quit = false;
         while(!quit){
@@ -84,7 +92,10 @@ public class MovieMenu
             }
         }
     }
-
+    /**
+     * Views details for selected movie.
+     * @param movie Selected movie.
+     */
     private void viewDetails(Movie movie) {
         String text;
         System.out.println();
@@ -104,7 +115,10 @@ public class MovieMenu
         else text = "Overall Rating: NA";
         System.out.println(text);
     }
-
+    /**
+     * View reviews of selected movie.
+     * @param movie Selected movie.
+     */
     private void viewReviews(Movie movie) {
         String text;
         if (movie.numReview() > 1) text = String.format("\nOverall Rating: %.1f", movie.avgRating());
@@ -119,7 +133,10 @@ public class MovieMenu
             System.out.println(text);
         }
     }
-    
+    /**
+     * Adds new review for selected movie.
+     * @param movie Selected movie.
+     */    
     private void newReview(Movie movie) {
         int rating;
         MovieStorage storage = new MovieStorage();
@@ -152,7 +169,11 @@ public class MovieMenu
         System.out.println("Review has been added!");
         
     }
-
+    /**
+     * Check showtimes for selected movie.
+     * @param movie Selected movie.
+     * @return Showing of movie.
+     */
     private Showing showtimes(Movie movie) {
         ShowingStorage storage = new ShowingStorage();
         ArrayList<Showing> showingList = storage.read();
@@ -224,7 +245,10 @@ public class MovieMenu
             }   
         }
     }
-    
+    /**
+     * Booking for showtime of movie.
+     * @param showtimes Showtime of movie.
+     */
     private void booking(Showing showtimes) {
         HolidayStorage storage = new HolidayStorage();
         ArrayList<Holiday> holidayList = storage.read();
@@ -461,7 +485,12 @@ public class MovieMenu
         }
         
     }
-
+    /**
+     * Purchase and confirmation of booking.
+     * @param showtimes Showtime of movie.
+     * @param seat Seat selected.
+     * @param price Price of ticket.
+     */
     private void purchase(Showing showtimes, int seat, double price) {
         BookingStorage storage1 = new BookingStorage();
         MovieStorage storage2 = new MovieStorage();

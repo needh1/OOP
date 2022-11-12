@@ -1,13 +1,17 @@
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Scanner;
-
+/**
+ * User interface for movie-goers
+ */
 public class MoviegoerUI 
 {
     enum Search { ID, title };
     enum Rank { Sales, Ratings };
     Scanner sc = new Scanner(System.in);
-
+    /**
+     * Method to display menu for movie-goers to use.
+     */
     public void moviegoerUI(){
         Rank type;
         boolean quit = false;
@@ -62,7 +66,9 @@ public class MoviegoerUI
             }
         }
     }
-
+    /**
+     * Method to display menu to search movies using ID or title.
+     */
     private void search() {
         Search type;
         boolean quit = false;
@@ -95,7 +101,10 @@ public class MoviegoerUI
             }
         }
     }
-
+    /**
+     * Search movies by either ID or title. 
+     * @param type ID or title.
+     */
     private void search(Search type){ 
         MovieStorage storage = new MovieStorage();
         ArrayList<Movie> movieList = storage.read();    
@@ -124,7 +133,9 @@ public class MoviegoerUI
         }
         System.out.println("Movie not found!");
     }
-
+    /**
+     * Shows movie list.
+     */
     private void list() {
         MovieStorage storage = new MovieStorage();
         ArrayList<Movie> movieList = storage.read();
@@ -153,7 +164,10 @@ public class MoviegoerUI
             System.out.println("Invalid choice!\n");
         }
     }
-
+    /**
+     * Sort movie list based on tickets sales or review ratings.
+     * @param type Ticket sales or review ratings.
+     */
     private void rank(Rank type) {
         MovieStorage storage = new MovieStorage();
         ArrayList<Movie> movieList = storage.read();
@@ -187,7 +201,9 @@ public class MoviegoerUI
         }
         System.out.println();
     }
-    
+    /**
+     * Check movie-goer booking history.
+     */
     private void history() {
         BookingStorage storage = new BookingStorage();
         ArrayList<Booking> bookingList = storage.read(); 
