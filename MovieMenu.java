@@ -126,7 +126,6 @@ public class MovieMenu
         System.out.print("\nRate the new movie from 1-5: ");
         if (sc.hasNextInt()) {
             rating = sc.nextInt();
-            sc.nextLine();
         }
         else {
             System.out.println("Please enter an integer from 1-5!\n");
@@ -137,6 +136,7 @@ public class MovieMenu
             System.out.println("Please enter an integer from 1-5!\n");
             return;
         }
+        sc.nextLine();
         System.out.print("\nReview content: ");
         String content = sc.nextLine();
         movie.addReview(rating, content);
@@ -229,7 +229,7 @@ public class MovieMenu
 
             try{
                 int code = Integer.parseInt(text);
-                if(code/10 > showtimes.getSeating().getRow() || code%10 > showtimes.getSeating().getColumn()){
+                if(code/10 > showtimes.getSeating().getRow() || code%10 > showtimes.getSeating().getColumn() || code/10 <= 0 || code%10 <= 0){
                     System.out.println("Invalid seat number!");
                     continue;
                 }
