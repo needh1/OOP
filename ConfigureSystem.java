@@ -20,8 +20,9 @@ public class ConfigureSystem
                                 "2. Delete Holiday\n"+
                                 "3. List Holidays\n"+
                                 "4. Update Price\n"+
-                                "5. Change Top 5 display settings\n"+
-                                "6. Return");
+                                "5. List Prices\n"+
+                                "6. Change Top 5 display settings\n"+
+                                "7. Return");
             System.out.print("Enter choice: ");
             if (sc.hasNextInt()) {
                 switch(sc.nextInt()){
@@ -39,9 +40,12 @@ public class ConfigureSystem
                         sc.nextLine();
                         break;
                     case 5:
-                        displaySettings();
+                        listPrices();
                         break;
                     case 6:
+                        displaySettings();
+                        break;
+                    case 7:
                         quit = true;
                         break;
                     default:
@@ -239,6 +243,20 @@ public class ConfigureSystem
         else {
             System.out.println("Please enter an integer!\n");
             sc.nextLine();
+        }
+    }
+
+    private void listPrices(){
+        PriceStorage priceStore = new PriceStorage();
+        Price prices = priceStore.read();
+        System.out.println("\nPricing Type                  : Price");
+        int count = 0;
+        for(PricingType type : PricingType.values()){
+            System.out.printf("%-30s: %.2f\n", type, prices.getPrice(type));
+            count++;
+            if(count%4 == 0){
+                System.out.println();
+            }
         }
     }
 }
