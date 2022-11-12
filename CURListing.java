@@ -100,6 +100,7 @@ public class CURListing
                     break;
                 case 3:
                     newStatus = "Preview";
+                    break;
                 default:
                     System.out.println("Invalid choice!\n");
                     return;
