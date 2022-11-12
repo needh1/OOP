@@ -245,7 +245,9 @@ public class ConfigureSystem
             sc.nextLine();
         }
     }
-
+    /**
+     * Lists out the ticket prices in the system.
+     */
     private void listPrices(){
         PriceStorage priceStore = new PriceStorage();
         Price prices = priceStore.read();
