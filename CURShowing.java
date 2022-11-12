@@ -65,7 +65,7 @@ public class CURShowing
         MovieStorage storage = new MovieStorage();
         ArrayList<Movie> movieList = storage.read();
         for(Movie movie : movieList){
-            if(movie.getStatus().equals("Now Showing")){
+            if(movie.getStatus().equals("Now Showing") || movie.getStatus().equals("Preview")){
                 System.out.print(movie.getMovieID() + ", ");
             }
         }
@@ -205,7 +205,7 @@ public class CURShowing
                     }
                     System.out.print("Enter new movie ID [");
                     for(Movie movie : movieList){
-                        if(movie.getStatus().equals("Now Showing")){
+                        if(movie.getStatus().equals("Now Showing") || movie.getStatus().equals("Preview")){
                             System.out.print(movie.getMovieID() + ", ");
                         }
                     }

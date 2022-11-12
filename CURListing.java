@@ -88,7 +88,7 @@ public class CURListing
         }
         double duration = sc.nextDouble();
 
-        System.out.print("Select movie status:\n1. Coming Soon\n2. Now Showing\nChoice: ");
+        System.out.print("Select movie status:\n1. Coming Soon\n2. Now Showing\n3. Preview\nChoice: ");
         String newStatus = "";
         if (sc.hasNextInt()) {
             switch(sc.nextInt()){
@@ -98,6 +98,8 @@ public class CURListing
                 case 2:
                     newStatus = "Now Showing";
                     break;
+                case 3:
+                    newStatus = "Preview";
                 default:
                     System.out.println("Invalid choice!\n");
                     return;
@@ -206,7 +208,7 @@ public class CURListing
                     movieList.get(getIndex(movieList, id)).setDuration(newDuration);
                     break;
                 case 4:
-                    System.out.print("Select option:\n1. Now Showing\n2. End of Showing\nChoice: ");
+                    System.out.print("Select option:\n1. Now Showing\n2. Preview\n3. End of Showing\nChoice: ");
                     String newStatus;
                     if (sc.hasNextInt()) {
                         switch(sc.nextInt()){
@@ -215,6 +217,10 @@ public class CURListing
                                 movieList.get(getIndex(movieList, id)).setStatus(newStatus);
                                 break;
                             case 2:
+                                newStatus = "Preview";
+                                movieList.get(getIndex(movieList, id)).setStatus(newStatus);
+                                break;
+                            case 3:
                                 for(int i = 0; i < movieList.size(); i++){
                                     if(movieList.get(i).getMovieID().equals(id)){
                                         movieList.remove(i);
