@@ -174,6 +174,7 @@ public class MovieMenu
                     continue;
                 }
                 LocalDate date = dateShowing.get(choice-1);
+                timeShowing = new ArrayList<>();
                 for (Showing show : movieShowing){
                     if (show.getDate() == date) timeShowing.add(show);
                 }
