@@ -122,6 +122,8 @@ public class MovieMenu
     
     private void newReview(Movie movie) {
         int rating;
+        MovieStorage storage = new MovieStorage();
+        ArrayList<Movie> movieList = storage.read();
         System.out.println();
         System.out.print("\nRate the new movie from 1-5: ");
         if (sc.hasNextInt()) {
@@ -139,8 +141,14 @@ public class MovieMenu
         sc.nextLine();
         System.out.print("\nReview content: ");
         String content = sc.nextLine();
-        movie.addReview(rating, content);
+        for (Movie chosen : movieList) {
+            if (chosen == movie) {
+                chosen.addReview(rating, content);
+            } 
+        }
+        storage.replaceExistingFile(movieList);
         System.out.println("Review has been added!");
+        
     }
 
     private Showing showtimes(Movie movie) {
@@ -494,7 +502,8 @@ public class MovieMenu
                 break;
             }
         }
-        storage3.replaceExistingFile(showingList);;
+        storage2.replaceExistingFile(movieList);
+        storage3.replaceExistingFile(showingList);
         System.out.println("Booking and purchase is successful!");
     }
 
