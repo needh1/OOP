@@ -114,7 +114,7 @@ public class CURShowing
 
         System.out.print("Enter cinemaCode [");
         for(Cinema cinema : cineplexList.get(cineplexIndex).getCinemaList()){
-            System.out.print(cinema.getCode() + ", ");
+            System.out.print(cinema.getCode() + "(" + cinema.getType() + "), ");
         }
         System.out.print("]: ");
         String cinemaCode = sc.next();
