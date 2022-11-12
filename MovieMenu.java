@@ -126,6 +126,7 @@ public class MovieMenu
         System.out.print("\nRate the new movie from 1-5: ");
         if (sc.hasNextInt()) {
             rating = sc.nextInt();
+            sc.nextLine();
         }
         else {
             System.out.println("Please enter an integer from 1-5!\n");
