@@ -106,7 +106,7 @@ public class CURShowing
                 cineplexIndex = i;
                 break;
             }
-            if(i == movieList.size() - 1){
+            if(i == cineplexList.size() - 1){
                 System.out.println("Cineplex does not exist in system.");
                 return;
             }
