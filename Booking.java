@@ -131,13 +131,6 @@ public class Booking implements Serializable
         price = Price;
     }
     /**
-     * Sets movie title.
-     * @param title
-     */
-    public void setMovieTitle(String title){
-        showDetails.setMovieTitle(title);
-    }
-    /**
      * Retrieves seat number of booking.
      * @return Seat number.
      */
