@@ -141,9 +141,11 @@ public class MovieMenu
         sc.nextLine();
         System.out.print("\nReview content: ");
         String content = sc.nextLine();
-        for (Movie chosen : movieList) {
-            if (chosen == movie) {
-                chosen.addReview(rating, content);
+        movie.addReview(rating, content);
+        for (int i = 0; i < movieList.size(); i++) {
+            if (movieList.get(i).getMovieID().equals(movie.getMovieID())) {
+                movieList.set(i, movie);
+                break;
             } 
         }
         storage.replaceExistingFile(movieList);
@@ -491,9 +493,10 @@ public class MovieMenu
         Booking newBooking = new Booking(name, email, id, number, price, showtimes, seat);
         storage1.writeObject(newBooking);     
         showtimes.getSeating().assignSeat(seat);
-        for (Movie movie: movieList) {
-            if (showtimes.getMovieTitle() == movie.getMovieTitle()) {
-                movie.incTicketSales();
+        for (int i = 0; i < movieList.size(); i++) {
+            if (showtimes.getMovieTitle().equals(movieList.get(i).getMovieTitle())) {
+                movieList.get(i).incTicketSales();
+                break;
             }
         }
         for(int i = 0; i < showingList.size(); i++){
