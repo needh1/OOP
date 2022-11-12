@@ -272,7 +272,7 @@ public class Movie implements Serializable
 		int total = 0;
 		for(Review r : reviewList)
 		    total += r.getReviewRating();
-		return total / numReview();
+		return (double) total / numReview();
 	}
 	/**
 	 * Sorts movies by ticket sales.
