@@ -243,10 +243,10 @@ public class CURShowing
                             return;
                         }
                     }
-                    System.out.print("Enter new cinema code [");
-                    for(Cinema cinema : cineplexList.get(cineplexIndex).getCinemaList()){
-                        System.out.print(cinema.getCode() + ", ");
-                    }
+                    System.out.print("Enter new cinemaCode [");
+        for(Cinema cinema : cineplexList.get(cineplexIndex).getCinemaList()){
+            System.out.print(cinema.getCode() + "(" + cinema.getType() + "), ");
+        }
                     System.out.print("]: ");
                     String cinemaCode = sc.next();
                     Cinema cinema = cineplexList.get(cineplexIndex).getCinema(cinemaCode);
