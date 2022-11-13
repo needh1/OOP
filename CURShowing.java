@@ -20,7 +20,8 @@ public class CURShowing
             System.out.println("1. Create showing listing\n"+
                                 "2. Update showing listing\n"+
                                 "3. Remove showing listing\n"+
-                                "4. Return\n");
+                                "4. List out movie showings\n"+
+                                "5. Return\n");
             System.out.print("Enter choice: ");
             if (sc.hasNextInt()) {
                 switch(sc.nextInt()){
@@ -34,6 +35,14 @@ public class CURShowing
                         remove();
                         break;
                     case 4:
+                        ShowingStorage showingStore = new ShowingStorage();
+                        ArrayList<Showing> showList = showingStore.read();
+                        System.out.println("______Movie Showtimes______");
+                        for(Showing showtime : showList){
+                            System.out.println(showtime.getShowingID() + "|" + showtime.getMovieTitle() + "|" + showtime.getCineplexName() + "|" + showtime.getSeating().getCode() + "|" + showtime.getSeating().getType());
+                        }
+                        break;
+                    case 5:
                         quit = true;
                         break;
                     default:
@@ -244,9 +253,9 @@ public class CURShowing
                         }
                     }
                     System.out.print("Enter new cinemaCode [");
-        for(Cinema cinema : cineplexList.get(cineplexIndex).getCinemaList()){
-            System.out.print(cinema.getCode() + "(" + cinema.getType() + "), ");
-        }
+                    for(Cinema cinema : cineplexList.get(cineplexIndex).getCinemaList()){
+                        System.out.print(cinema.getCode() + "(" + cinema.getType() + "), ");
+                    }
                     System.out.print("]: ");
                     String cinemaCode = sc.next();
                     Cinema cinema = cineplexList.get(cineplexIndex).getCinema(cinemaCode);

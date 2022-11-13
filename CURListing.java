@@ -16,7 +16,8 @@ public class CURListing
             System.out.println("1. Create movie listing\n"+
                                 "2. Update movie listing\n"+
                                 "3. Remove movie listing\n"+
-                                "4. Return");
+                                "4. List out movie listings\n"+
+                                "5. Return");
             if (sc.hasNextInt()) {
                 switch(sc.nextInt()){
                     case 1:
@@ -29,6 +30,14 @@ public class CURListing
                         remove();
                         break;
                     case 4:
+                        MovieStorage movieStore = new MovieStorage();
+                        ArrayList<Movie> movieList = movieStore.read();
+                        System.out.println("_______Movie Listings______");
+                        for(Movie movie : movieList){
+                            System.out.println(movie.getMovieID() + "|" + movie.getMovieTitle() + "|" + movie.getDuration() + "|" + movie.getStatus() + "|" + movie.getMovieRating() + "|" + movie.getDirector() + "|" + movie.getCast());
+                        }
+                        break;
+                    case 5:
                         quit = true;
                         break;
                     default:
