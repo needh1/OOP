@@ -236,7 +236,7 @@ public class CURListing
                                         ShowingStorage showStore = new ShowingStorage();
                                         ArrayList<Showing> showList = showStore.read();
                                         ArrayList<Showing> temp = new ArrayList<>();
-                                        for(int j = 0; i < showList.size(); j++){
+                                        for(int j = 0; j < showList.size(); j++){
                                             if(movieList.get(i).getMovieTitle().equals(showList.get(j).getMovieTitle())){
                                                 temp.add(showList.get(i));
                                             }
@@ -323,7 +323,7 @@ public class CURListing
                 ShowingStorage showStore = new ShowingStorage();
                 ArrayList<Showing> showList = showStore.read();
                 ArrayList<Showing> temp = new ArrayList<>();
-                for(int j = 0; i < showList.size(); j++){
+                for(int j = 0; j < showList.size(); j++){
                     if(movieList.get(i).getMovieTitle().equals(showList.get(j).getMovieTitle())){
                         temp.add(showList.get(i));
                     }
