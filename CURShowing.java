@@ -39,7 +39,7 @@ public class CURShowing
                         ArrayList<Showing> showList = showingStore.read();
                         System.out.println("______Movie Showtimes______");
                         for(Showing showtime : showList){
-                            System.out.println(showtime.getShowingID() + "|" + showtime.getMovieTitle() + "|" + showtime.getCineplexName() + "|" + showtime.getSeating().getCode() + "|" + showtime.getSeating().getType());
+                            System.out.println(showtime.getShowingID() + "|" + showtime.getMovieTitle() + "|" + showtime.getCineplexName() + "|" + showtime.getSeating().getCode() + "|" + showtime.getSeating().getType() + "|" + showtime.getDate() + "|" + showtime.getTime());
                         }
                         break;
                     case 5:
