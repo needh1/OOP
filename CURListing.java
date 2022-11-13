@@ -233,6 +233,16 @@ public class CURListing
                             case 3:
                                 for(int i = 0; i < movieList.size(); i++){
                                     if(movieList.get(i).getMovieID().equals(id)){
+                                        ShowingStorage showStore = new ShowingStorage();
+                                        ArrayList<Showing> showList = showStore.read();
+                                        ArrayList<Showing> temp = new ArrayList<>();
+                                        for(int j = 0; i < showList.size(); j++){
+                                            if(movieList.get(i).getMovieTitle().equals(showList.get(j).getMovieTitle())){
+                                                temp.add(showList.get(i));
+                                            }
+                                        }
+                                        showList.removeAll(temp);
+                                        showStore.replaceExistingFile(showList);
                                         movieList.remove(i);
                                         storage.replaceExistingFile(movieList);
                                         System.out.println("Movie successfully removed!");
@@ -310,6 +320,16 @@ public class CURListing
         
         for(int i = 0; i < movieList.size(); i++){
             if(movieList.get(i).getMovieID().equals(id)){
+                ShowingStorage showStore = new ShowingStorage();
+                ArrayList<Showing> showList = showStore.read();
+                ArrayList<Showing> temp = new ArrayList<>();
+                for(int j = 0; i < showList.size(); j++){
+                    if(movieList.get(i).getMovieTitle().equals(showList.get(j).getMovieTitle())){
+                        temp.add(showList.get(i));
+                    }
+                }
+                showList.removeAll(temp);
+                showStore.replaceExistingFile(showList);
                 movieList.remove(i);
                 storage.replaceExistingFile(movieList);
                 System.out.println("Movie successfully removed!");
