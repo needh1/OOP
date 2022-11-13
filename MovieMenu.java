@@ -278,7 +278,7 @@ public class MovieMenu
                 MovieType movieType = null;
                 CinemaType cinemaType = showtimes.getSeating().getType();
                 for(Holiday holiday: holidayList){
-                    if(date == holiday.getHolidayDate()){
+                    if(date.isEqual(holiday.getHolidayDate())){
                         isHoliday = true;
                     }
                 }
