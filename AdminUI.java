@@ -1,6 +1,8 @@
 import java.util.ArrayList;
 import java.util.Scanner;
-
+/**
+ * User interface for admin.
+ */
 public class AdminUI
 {
     Scanner sc = new Scanner(System.in);
